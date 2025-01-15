@@ -49,72 +49,35 @@ Template Name: Шаблон: "Главная страница"
 
   <section class="rooms">
     <div class="container">
-      <h2>Залы</h2>
+      <h2><?= get_field("rooms_title"); ?></h2>
       <div class="row room-item">
-        <div class="col-4">
-          <div class="room-item__content">
-            <div class="room-item__image">
-              <img src="<?php echo get_template_directory_uri();?>/assets/img/rooms/room1.jpg" alt="room 1">
-            </div>
-            <div class="room-item__description">
-              <h3>Зал 1</h3>
-              <p><b>Зал:</b> 120 кв. м, белый потолок, высота потолков 6м, панорамное остекление, белый потолок и
-                бетонный
-                пол</p>
-              <p><b>Циклорама:</b> есть 4х5.5 м (ГхШ), доп. оплата за использование в случае загрязнения</p>
-
-              <p><b>Интерьер:</b> концептуальная мебель, геометрическая конструкция, хромированный угол с металлическим
-                столиком, ростовое зеркало</p>
-              <p><b>Оборудование:</b> в стоимость зала включены 2 импульсных источника света.</p>
-            </div>
-            <div class="room-item__button">
-              <button class="hero-button">Забронировать</button>
-            </div>
-          </div>
-        </div>
-        <div class="col-4">
-          <div class="room-item__content">
-            <div class="room-item__image">
-              <img src="<?php echo get_template_directory_uri();?>/assets/img/rooms/room2.jpg" alt="room 2">
-            </div>
-            <div class="room-item__description">
-              <h3>Зал 2</h3>
-              <p><b>Зал:</b> 120 кв. м, белый потолок, высота потолков 6м, панорамное остекление, белый потолок и
-                бетонный
-                пол</p>
-              <p><b>Циклорама:</b> есть 4х5.5 м (ГхШ), доп. оплата за использование в случае загрязнения</p>
-
-              <p><b>Интерьер:</b> концептуальная мебель, геометрическая конструкция, хромированный угол с металлическим
-                столиком, ростовое зеркало</p>
-              <p><b>Оборудование:</b> в стоимость зала включены 2 импульсных источника света.</p>
-            </div>
-            <div class="room-item__button">
-              <button class="hero-button">Забронировать</button>
-            </div>
-          </div>
-        </div>
-        <div class="col-4">
-          <div class="room-item__content">
-            <div class="room-item__image">
-              <img src="<?php echo get_template_directory_uri();?>/assets/img/rooms/room3.jpg" alt="room 2">
-            </div>
-            <div class="room-item__description">
-              <h3>Зал 3</h3>
-              <p><b>Зал:</b> 120 кв. м, белый потолок, высота потолков 6м, панорамное остекление, белый потолок и
-                бетонный
-                пол</p>
-              <p><b>Циклорама:</b> есть 4х5.5 м (ГхШ), доп. оплата за использование в случае загрязнения</p>
-
-              <p><b>Интерьер:</b> концептуальная мебель, геометрическая конструкция, хромированный угол с металлическим
-                столиком, ростовое зеркало</p>
-              <p><b>Оборудование:</b> в стоимость зала включены 2 импульсных источника света.</p>
-            </div>
-            <div class="room-item__button">
-              <button class="hero-button">Забронировать</button>
-            </div>
-          </div>
-        </div>
-      </div>
+        <?php if( have_rows('room_repeater') ): ?>
+            <?php while( have_rows('room_repeater') ): the_row(); ?>
+                <div class="col-4">
+                    <div class="room-item__content">
+                        <div class="room-item__image">
+                            <?php 
+                            $image = get_sub_field('room_repeater_image'); 
+                            if( $image ): ?>
+                                <img src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>">
+                            <?php endif; ?>
+                        </div>
+                        <div class="room-item__description">
+                            <h3><?php the_sub_field('room_repeater_title'); ?></h3>
+                            <?php if( have_rows('room_repeater_description') ): ?>
+                                <?php while( have_rows('room_repeater_description') ): the_row(); ?>
+                                    <p><?php the_sub_field('room_repeater_description_item');  ?></p>
+                                <?php endwhile; ?>
+                            <?php endif; ?>
+                        </div>
+                        <div class="room-item__button">
+                            <button class="hero-button">Забронировать</button>
+                        </div>
+                    </div>
+                </div>
+            <?php endwhile; ?>
+        <?php endif; ?>
+    </div>
     </div>
   </section>
    
