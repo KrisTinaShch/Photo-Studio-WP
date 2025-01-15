@@ -17,9 +17,9 @@
 <head>
   	<meta charset="<?php bloginfo( 'charset' ); ?>">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="assets/css/reset.css">
-  <link rel="stylesheet" href="assets/css/grid.css">
-  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="<?php echo get_template_directory_uri();?>/assets/css/reset.css">
+  <link rel="stylesheet" href="<?php echo get_template_directory_uri();?>/assets/css/grid.css">
+  <link rel="stylesheet" href="<?php echo get_template_directory_uri();?>/assets/css/style.css">
   <?php wp_head(); ?>
 </head>
 
@@ -29,7 +29,7 @@
 
   <header id="main-header" class="header">
     <div class="header-container">
-      <a href="#" class="logo"><img src="assets/img/logo.webp" alt="logo"></a>
+      <a href="#" class="logo"><img src="<?php echo get_template_directory_uri();?>/assets/img/logo.webp" alt="logo"></a>
       <div class="burger" id="burger-icon">
         <span></span>
         <span></span>
@@ -45,12 +45,12 @@
           <li><a href="#contact">Контакты</a></li>
         </ul>
         <ul class="header-social">
-          <li><a href="#social" class="social-links"><img src="assets/img/social/social.png" alt="instagram"
+          <li><a href="#social" class="social-links"><img src="<?php echo get_template_directory_uri();?>/assets/img/social/social.png" alt="instagram"
                 class="social-link"></a></li>
-          <li><a href="#facebook" class="social-links"><img src="assets/img/social/facebook.png" alt="facebook"
+          <li><a href="#facebook" class="social-links"><img src="<?php echo get_template_directory_uri();?>/assets/img/social/facebook.png" alt="facebook"
                 class="social-link"> </a>
           </li>
-          <li><a href="#youtube" class="social-links"><img src="assets/img/social/youtube.png" alt="youtube"
+          <li><a href="#youtube" class="social-links"><img src="<?php echo get_template_directory_uri();?>/assets/img/social/youtube.png" alt="youtube"
                 class="social-link"></a></li>
         </ul>
       </nav>

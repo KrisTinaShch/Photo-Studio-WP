@@ -1,0 +1,29 @@
+[15-Jan-2025 05:55:04 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function get_template_ditectory_uri() in C:\Users\KShteglova\Local Sites\photostudio\app\public\wp-content\themes\photostudio\header.php:20
+Stack trace:
+#0 C:\Users\KShteglova\Local Sites\photostudio\app\public\wp-includes\template.php(810): require_once()
+#1 C:\Users\KShteglova\Local Sites\photostudio\app\public\wp-includes\template.php(745): load_template('C:\\Users\\KShteg...', true, Array)
+#2 C:\Users\KShteglova\Local Sites\photostudio\app\public\wp-includes\general-template.php(48): locate_template(Array, true, true, Array)
+#3 C:\Users\KShteglova\Local Sites\photostudio\app\public\wp-content\themes\photostudio\page-main.php(6): get_header()
+#4 C:\Users\KShteglova\Local Sites\photostudio\app\public\wp-includes\template-loader.php(106): include('C:\\Users\\KShteg...')
+#5 C:\Users\KShteglova\Local Sites\photostudio\app\public\wp-blog-header.php(19): require_once('C:\\Users\\KShteg...')
+#6 C:\Users\KShteglova\Local Sites\photostudio\app\public\index.php(17): require('C:\\Users\\KShteg...')
+#7 {main}
+  thrown in C:\Users\KShteglova\Local Sites\photostudio\app\public\wp-content\themes\photostudio\header.php on line 20
+[15-Jan-2025 05:55:11 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function get_template_ditectory_uri() in C:\Users\KShteglova\Local Sites\photostudio\app\public\wp-content\themes\photostudio\header.php:20
+Stack trace:
+#0 C:\Users\KShteglova\Local Sites\photostudio\app\public\wp-includes\template.php(810): require_once()
+#1 C:\Users\KShteglova\Local Sites\photostudio\app\public\wp-includes\template.php(745): load_template('C:\\Users\\KShteg...', true, Array)
+#2 C:\Users\KShteglova\Local Sites\photostudio\app\public\wp-includes\general-template.php(48): locate_template(Array, true, true, Array)
+#3 C:\Users\KShteglova\Local Sites\photostudio\app\public\wp-content\themes\photostudio\page-main.php(6): get_header()
+#4 C:\Users\KShteglova\Local Sites\photostudio\app\public\wp-includes\template-loader.php(106): include('C:\\Users\\KShteg...')
+#5 C:\Users\KShteglova\Local Sites\photostudio\app\public\wp-blog-header.php(19): require_once('C:\\Users\\KShteg...')
+#6 C:\Users\KShteglova\Local Sites\photostudio\app\public\index.php(17): require('C:\\Users\\KShteg...')
+#7 {main}
+  thrown in C:\Users\KShteglova\Local Sites\photostudio\app\public\wp-content\themes\photostudio\header.php on line 20
+[15-Jan-2025 06:40:43 UTC] PHP Warning:  file_get_contents(http://photostudio.local/wp-content/plugins/wp-maximum-upload-file-size/): Failed to open stream: HTTP request failed! HTTP/1.1 403 Forbidden
+ in C:\Users\KShteglova\Local Sites\photostudio\app\public\wp-includes\functions.php on line 6893
+[15-Jan-2025 06:40:55 UTC] PHP Warning:  file_get_contents(http://photostudio.local/wp-content/plugins/wp-maximum-upload-file-size/): Failed to open stream: HTTP request failed! HTTP/1.1 403 Forbidden
+ in C:\Users\KShteglova\Local Sites\photostudio\app\public\wp-includes\functions.php on line 6893
+[15-Jan-2025 06:40:55 UTC] PHP Warning:  file_get_contents(http://photostudio.local/wp-content/plugins/wp-maximum-upload-file-size/): Failed to open stream: HTTP request failed! HTTP/1.1 403 Forbidden
+ in C:\Users\KShteglova\Local Sites\photostudio\app\public\wp-includes\functions.php on line 6893
+[15-Jan-2025 07:34:10 UTC] PHP Warning:  Trying to access array offset on value of type bool in C:\Users\KShteglova\Local Sites\photostudio\app\public\wp-content\themes\photostudio\page-main.php on line 17
