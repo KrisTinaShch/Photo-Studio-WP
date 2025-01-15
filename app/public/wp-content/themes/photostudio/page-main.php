@@ -82,26 +82,30 @@ Template Name: Шаблон: "Главная страница"
   </section>
    
   <section style="text-align: center;">
-    <h2>Доступные даты</h2>
+    <h2><?= get_field("booking_title"); ?></h2>
     <p>....</p>
   </section>
+
   <section class="photographer">
-    <h2>Фотограф</h2>
+    <h2><?= get_field("photographer_title"); ?></h2>
     <div class="container">
       <div class="row">
         <div class="col-6">
           <div class="photographer-image">
-            <img src="<?php echo get_template_directory_uri();?>/assets/img/sergey.png" alt="">
+           <?php if ($image_array = get_field("photographer_image")
+            ) { ?>
+                <img 
+                    src="<?= esc_url($image_array['url']); ?>" 
+                    alt="<?= esc_attr($image_array['alt']); ?>"
+                    loading="lazy"
+                />
+            <?php } ?>
           </div>
         </div>
         <div class="col-6">
           <div class="photographer-content">
-            <h3> Я Сережа!</h3>
-            <p>"Не снимаю фотографии, а создаю их."</p>
-            <p>Фотография для меня больше, чем снимок - это искусство. Когда я нажимаю затвор, я будто пишу картину,
-              но за одну секунду. Картину, наполненную эстетикой, гармонией и чувствами. Раскрыть вашу истинную красоту
-              и характер - моя главная миссия в процессе съёмки.</p>
-            <p> Мои клиенты - моё вдохновение!</p>
+            <h3> <?= get_field("photographer_subtitle"); ?></h3>
+            <p><?= get_field("photographer_description"); ?></p>
             <button class="hero-button">Мои работы</button>
           </div>
         </div>
