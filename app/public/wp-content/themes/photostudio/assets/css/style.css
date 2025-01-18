@@ -331,7 +331,6 @@ h3 {
     text-align: center;
 }
 
-
 /* Show burger only on mobile */
 @media (max-width: 768px) {
     .burger {

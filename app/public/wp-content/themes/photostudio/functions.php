@@ -175,4 +175,9 @@ require get_template_directory() . '/inc/customizer.php';
 if ( defined( 'JETPACK__VERSION' ) ) {
 	require get_template_directory() . '/inc/jetpack.php';
 }
-
+function enqueue_jquery_if_missing() {
+    if (!wp_script_is('jquery', 'enqueued')) {
+        wp_enqueue_script('jquery');
+    }
+}
+add_action('wp_enqueue_scripts', 'enqueue_jquery_if_missing');

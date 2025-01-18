@@ -51,3 +51,56 @@ Stack trace:
 [15-Jan-2025 10:35:25 UTC] PHP Warning:  Array to string conversion in C:\Users\KShteglova\Local Sites\photostudio\app\public\wp-content\plugins\advanced-custom-fields-pro\includes\api\api-template.php on line 750
 [15-Jan-2025 10:35:25 UTC] PHP Warning:  Array to string conversion in C:\Users\KShteglova\Local Sites\photostudio\app\public\wp-content\plugins\advanced-custom-fields-pro\includes\api\api-template.php on line 750
 [15-Jan-2025 10:35:25 UTC] PHP Warning:  Array to string conversion in C:\Users\KShteglova\Local Sites\photostudio\app\public\wp-content\plugins\advanced-custom-fields-pro\includes\api\api-template.php on line 750
+[15-Jan-2025 16:18:10 UTC] WordPress database error Table 'local.wp_blogs' doesn't exist for query SELECT  wp_blogs.blog_id
+			 FROM wp_blogs 
+			 WHERE domain = 'photostudio.local' AND path = '/'
+			 
+			 ORDER BY wp_blogs.blog_id ASC
+			 LIMIT 1 made by include('phar://C:/Users/piska/AppData/Local/Programs/Local/resources/extraResources/bin/wp-cli/wp-cli.phar/php/boot-phar.php'), include('phar://C:/Users/piska/AppData/Local/Programs/Local/resources/extraResources/bin/wp-cli/wp-cli.phar/vendor/wp-cli/wp-cli/php/wp-cli.php'), WP_CLI\bootstrap, WP_CLI\Bootstrap\LaunchRunner->process, WP_CLI\Runner->start, WP_CLI\Runner->load_wordpress, require('wp-settings.php'), require('wp-includes/ms-settings.php'), ms_load_current_site_and_network, get_site_by_path, get_sites, WP_Site_Query->query, WP_Site_Query->get_sites, WP_Site_Query->get_site_ids
+[17-Jan-2025 20:56:54 UTC] PHP Warning:  Undefined array key "day" in C:\Users\piska\Local Sites\photostudio\app\public\wp-content\plugins\ks-booking\booking.php on line 90
+[17-Jan-2025 20:56:58 UTC] PHP Warning:  Undefined array key "day" in C:\Users\piska\Local Sites\photostudio\app\public\wp-content\plugins\ks-booking\booking.php on line 90
+[17-Jan-2025 20:57:01 UTC] PHP Warning:  Undefined array key "day" in C:\Users\piska\Local Sites\photostudio\app\public\wp-content\plugins\ks-booking\booking.php on line 90
+[17-Jan-2025 20:57:31 UTC] PHP Warning:  Undefined array key "day" in C:\Users\piska\Local Sites\photostudio\app\public\wp-content\plugins\ks-booking\booking.php on line 90
+[18-Jan-2025 12:42:20 UTC] Данные для бронирования:
+[18-Jan-2025 12:42:20 UTC] Дата: 2025-01-19
+[18-Jan-2025 12:42:20 UTC] Время: 14:00
+[18-Jan-2025 12:42:25 UTC] Данные для бронирования:
+[18-Jan-2025 12:42:25 UTC] Дата: 2025-01-19
+[18-Jan-2025 12:42:25 UTC] Время: 15:00
+[18-Jan-2025 12:42:28 UTC] Данные для бронирования:
+[18-Jan-2025 12:42:28 UTC] Дата: 2025-01-19
+[18-Jan-2025 12:42:28 UTC] Время: 16:00
+[18-Jan-2025 12:42:31 UTC] Данные для бронирования:
+[18-Jan-2025 12:42:31 UTC] Дата: 2025-01-19
+[18-Jan-2025 12:42:31 UTC] Время: 17:00
+[18-Jan-2025 12:42:33 UTC] Данные для бронирования:
+[18-Jan-2025 12:42:33 UTC] Дата: 2025-01-19
+[18-Jan-2025 12:42:33 UTC] Время: 18:00
+[18-Jan-2025 12:42:42 UTC] Данные для бронирования:
+[18-Jan-2025 12:42:42 UTC] Дата: 2025-01-20
+[18-Jan-2025 12:42:42 UTC] Время: 14:00
+[18-Jan-2025 12:42:44 UTC] Данные для бронирования:
+[18-Jan-2025 12:42:44 UTC] Дата: 2025-01-20
+[18-Jan-2025 12:42:44 UTC] Время: 15:00
+[18-Jan-2025 12:42:47 UTC] Данные для бронирования:
+[18-Jan-2025 12:42:47 UTC] Дата: 2025-01-20
+[18-Jan-2025 12:42:47 UTC] Время: 16:00
+[18-Jan-2025 12:42:50 UTC] Данные для бронирования:
+[18-Jan-2025 12:42:50 UTC] Дата: 2025-01-20
+[18-Jan-2025 12:42:50 UTC] Время: 17:00
+[18-Jan-2025 12:42:52 UTC] Данные для бронирования:
+[18-Jan-2025 12:42:52 UTC] Дата: 2025-01-20
+[18-Jan-2025 12:42:52 UTC] Время: 18:00
+[18-Jan-2025 12:48:48 UTC] Дата: 2025-01-01, Время: 14:00
+[18-Jan-2025 12:48:51 UTC] Дата: 2025-01-01, Время: 14:00
+[18-Jan-2025 12:48:54 UTC] Дата: 2025-01-01, Время: 15:00
+[18-Jan-2025 12:48:57 UTC] Дата: 2025-01-01, Время: 16:00
+[18-Jan-2025 12:49:00 UTC] Дата: 2025-01-01, Время: 17:00
+[18-Jan-2025 12:49:02 UTC] Дата: 2025-01-01, Время: 18:00
+[18-Jan-2025 12:49:13 UTC] Дата: 2025-01-01, Время: 15:00
+[18-Jan-2025 12:49:39 UTC] Данные для бронирования:
+[18-Jan-2025 12:49:39 UTC] Дата: 2025-01-01
+[18-Jan-2025 12:49:39 UTC] Время: 14:00
+[18-Jan-2025 12:49:53 UTC] Данные для бронирования:
+[18-Jan-2025 12:49:53 UTC] Дата: 2025-01-19
+[18-Jan-2025 12:49:53 UTC] Время: 14:00

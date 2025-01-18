@@ -1,0 +1,57 @@
+/* booking */
+#booking-calendar {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+}
+
+#booking-calendar div {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+    cursor: pointer;
+}
+
+#booking-calendar div.booked {
+    background-color: #f8d7da;
+    cursor: not-allowed;
+}
+
+#booking-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.calendar-day {
+    text-align: center;
+    padding: 10px;
+    border: 1px solid #ddd;
+    cursor: pointer;
+    background-color: #f9f9f9;
+    transition: background-color 0.3s ease;
+}
+
+.calendar-day:hover {
+    background-color: #eaeaea;
+}
+
+.calendar-day.unavailable {
+    background-color: #f8d7da;
+    /* Красный фон для недоступных дней */
+    cursor: not-allowed;
+    color: #a0a0a0;
+    /* Бледный текст */
+}
+
+.calendar-day.unavailable:hover {
+    background-color: #f8d7da;
+    /* Недоступные дни не меняют цвет при наведении */
+}
