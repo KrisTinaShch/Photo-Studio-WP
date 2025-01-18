@@ -10,21 +10,6 @@ if (!defined('ABSPATH')) {
     exit; 
 }
 
-function booking_plugin_clear_database() {
-    global $wpdb;
-    $table_name = $wpdb->prefix . 'booking';
-
-    // Удаляем все записи
-    $wpdb->query("DELETE FROM $table_name");
-
-    // Или для полного удаления таблицы:
-    // $wpdb->query("DROP TABLE IF EXISTS $table_name");
-}
-
-// Раскомментируйте строку ниже, чтобы выполнить очистку при следующем обновлении страницы.
-// booking_plugin_clear_database();
-
-
 function booking_plugin_create_table() {
     global $wpdb;
     $table_name = $wpdb->prefix . 'booking';
@@ -34,6 +19,8 @@ function booking_plugin_create_table() {
         id mediumint(9) NOT NULL AUTO_INCREMENT,
         booking_date date NOT NULL,
         booking_time varchar(10) NOT NULL,
+        user_name varchar(100) NOT NULL,
+        user_phone varchar(20) NOT NULL,
         user_email varchar(100) NOT NULL,
         UNIQUE KEY id (id)
     ) $charset_collate;";
@@ -42,6 +29,7 @@ function booking_plugin_create_table() {
     dbDelta($sql);
 }
 register_activation_hook(__FILE__, 'booking_plugin_create_table');
+
 function booking_plugin_enqueue_scripts() {
     wp_enqueue_style('booking-plugin-style', plugin_dir_url(__FILE__) . 'style.css');
     wp_enqueue_script('booking-plugin-script', plugin_dir_url(__FILE__) . 'script.js', ['jquery'], null, true);
@@ -61,150 +49,124 @@ function booking_plugin_calendar_shortcode() {
         <div id="available-times"></div>
         <button id="booking-confirm">Подтвердить</button>
     </div>
+    <div id="user-info-modal" style="display: none;">
+        <h3>Введите ваши данные</h3>
+        <form id="user-info-form">
+            <label for="user-name">Имя:</label>
+            <input type="text" id="user-name" name="user_name" required>
+            <label for="user-phone">Телефон:</label>
+            <input type="text" id="user-phone" name="user_phone" required>
+            <label for="user-email">Емейл:</label>
+            <input type="email" id="user-email" name="user_email" required>
+            <button type="submit">Отправить</button>
+        </form>
+    </div>
     <?php
     return ob_get_clean();
 }
 add_shortcode('booking_calendar', 'booking_plugin_calendar_shortcode');
 
-function booking_plugin_handle_ajax() {
-    check_ajax_referer('booking_nonce', 'nonce');
-    wp_send_json_success(['message' => 'AJAX работает!']);
-}
-add_action('wp_ajax_booking_action', 'booking_plugin_handle_ajax');
-add_action('wp_ajax_nopriv_booking_action', 'booking_plugin_handle_ajax');
-
-
 function booking_plugin_get_available_times() {
-    check_ajax_referer('booking_nonce', 'nonce'); // Проверяем nonce для безопасности
+    check_ajax_referer('booking_nonce', 'nonce');
 
-    // Получаем данные из запроса
     $day = isset($_POST['day']) ? intval($_POST['day']) : 0;
+    $month = isset($_POST['month']) ? intval($_POST['month']) : date('m');
+    $year = isset($_POST['year']) ? intval($_POST['year']) : date('Y');
 
-    if ($day <= 0) {
-        wp_send_json_error(['message' => 'Неверные данные: день не указан.']);
+    if ($day <= 0 || !checkdate($month, $day, $year)) {
+        wp_send_json_error(['message' => 'Неверное дата.']);
     }
 
-    // Преобразуем $day в дату
-    $current_month = date('Y-m'); // Текущий месяц и год
-    $selected_date = $current_month . '-' . str_pad($day, 2, '0', STR_PAD_LEFT);
+    $selected_date = sprintf('%04d-%02d-%02d', $year, $month, $day);
 
-    // Проверяем корректность даты
-    if (!checkdate(date('m'), $day, date('Y'))) {
-        wp_send_json_error(['message' => 'Неверный день']);
-    }
-
-    // Логика доступных временных слотов
-    $available_times = ['14:00', '15:00', '16:00', '17:00', '18:00'];
-
-    // Проверяем занятые слоты в базе данных
     global $wpdb;
     $table_name = $wpdb->prefix . 'booking';
+
+    $available_times = ['10:00', '11:00', '12:00', '13:00', '14:00'];
     $booked_times = $wpdb->get_col($wpdb->prepare(
         "SELECT booking_time FROM $table_name WHERE booking_date = %s",
         $selected_date
     ));
 
-    // Убираем занятые слоты из доступных
-    if (!empty($booked_times)) {
-        $available_times = array_diff($available_times, $booked_times);
-    }
+    $available_times = array_diff($available_times, $booked_times);
 
-    // Если все слоты заняты
     if (empty($available_times)) {
-        wp_send_json_error(['message' => 'Все слоты заняты']);
+        wp_send_json_error(['message' => 'Все слоты заняты.']);
     }
 
-    // Возвращаем доступные слоты
     wp_send_json_success(['times' => array_values($available_times)]);
 }
-
-
-
-
 add_action('wp_ajax_get_available_times', 'booking_plugin_get_available_times');
 add_action('wp_ajax_nopriv_get_available_times', 'booking_plugin_get_available_times');
 
-
-
 function booking_plugin_book_time_slot() {
-    check_ajax_referer('booking_nonce', 'nonce'); // Проверяем nonce
+    check_ajax_referer('booking_nonce', 'nonce');
 
-    // Получаем данные из запроса
     $day = isset($_POST['day']) ? intval($_POST['day']) : 0;
+    $month = isset($_POST['month']) ? intval($_POST['month']) : date('m');
+    $year = isset($_POST['year']) ? intval($_POST['year']) : date('Y');
     $time = isset($_POST['time']) ? sanitize_text_field($_POST['time']) : '';
+    $user_name = isset($_POST['user_name']) ? sanitize_text_field($_POST['user_name']) : '';
+    $user_phone = isset($_POST['user_phone']) ? sanitize_text_field($_POST['user_phone']) : '';
+    $user_email = isset($_POST['user_email']) ? sanitize_email($_POST['user_email']) : '';
 
-    if ($day <= 0 || empty($time)) {
-        wp_send_json_error(['message' => 'Неверные данные']);
+    if ($day <= 0 || empty($time) || empty($user_name) || empty($user_phone) || empty($user_email) || !checkdate($month, $day, $year)) {
+        wp_send_json_error(['message' => 'Неверные данные.']);
     }
 
-    // Преобразуем $day в дату
-    $current_month = date('Y-m'); // Текущий месяц и год
-    $booking_date = $current_month . '-' . str_pad($day, 2, '0', STR_PAD_LEFT);
+    $booking_date = sprintf('%04d-%02d-%02d', $year, $month, $day);
 
-    // Проверяем, существует ли дата
-    if (!checkdate(date('m'), $day, date('Y'))) {
-        wp_send_json_error(['message' => 'Неверный день']);
-    }
-
-    // Сохраняем данные бронирования
     global $wpdb;
     $table_name = $wpdb->prefix . 'booking';
 
     $result = $wpdb->insert($table_name, [
         'booking_date' => $booking_date,
         'booking_time' => $time,
-        'user_email'   => 'test@example.com', // Временно задаём тестовый email
+        'user_name'    => $user_name,
+        'user_phone'   => $user_phone,
+        'user_email'   => $user_email,
     ]);
 
     if ($result) {
-        wp_send_json_success(['message' => 'Бронь успешно сохранена']);
+        wp_send_json_success(['message' => 'Бронь сохранена.']);
     } else {
-        wp_send_json_error(['message' => 'Ошибка при сохранении бронирования']);
+        wp_send_json_error(['message' => 'Ошибка сохранения.']);
     }
 }
-
-
 add_action('wp_ajax_book_time_slot', 'booking_plugin_book_time_slot');
 add_action('wp_ajax_nopriv_book_time_slot', 'booking_plugin_book_time_slot');
 
 function booking_plugin_get_unavailable_dates() {
-    check_ajax_referer('booking_nonce', 'nonce'); // Проверяем nonce для безопасности
+    check_ajax_referer('booking_nonce', 'nonce');
+
+    $year = isset($_POST['year']) ? intval($_POST['year']) : date('Y');
+    $month = isset($_POST['month']) ? intval($_POST['month']) : date('m');
+
+    $start_date = sprintf('%04d-%02d-01', $year, $month);
+    $end_date = date('Y-m-t', strtotime($start_date));
+
+    $available_times = ['10:00', '11:00', '12:00', '13:00', '14:00'];
+    $total_slots = count($available_times);
 
     global $wpdb;
     $table_name = $wpdb->prefix . 'booking';
-
-    // Определяем текущий месяц
-    $start_date = date('Y-m-01'); // Первый день месяца
-    $end_date = date('Y-m-t');   // Последний день месяца
-
-    // Все доступные временные слоты
-    $available_times = ['14:00', '15:00', '16:00', '17:00', '18:00'];
-    $total_slots = count($available_times);
-
-    // Получаем занятые слоты для каждой даты
     $results = $wpdb->get_results($wpdb->prepare(
-        "SELECT booking_date, COUNT(booking_time) as booked_slots 
+        "SELECT booking_date, COUNT(DISTINCT booking_time) as booked_slots 
          FROM $table_name 
          WHERE booking_date BETWEEN %s AND %s 
          GROUP BY booking_date",
         $start_date, $end_date
     ));
-    
+
     $unavailable_dates = [];
 
     foreach ($results as $result) {
-        // Проверяем число забронированных слотов
         if ((int)$result->booked_slots >= $total_slots) {
-            $unavailable_dates[] = $result->booking_date; // Добавляем дату в недоступные
+            $unavailable_dates[] = $result->booking_date;
         }
     }
 
-    // Возвращаем массив недоступных дат
     wp_send_json_success(['unavailable_dates' => $unavailable_dates]);
 }
-
-
-
-
 add_action('wp_ajax_get_unavailable_dates', 'booking_plugin_get_unavailable_dates');
 add_action('wp_ajax_nopriv_get_unavailable_dates', 'booking_plugin_get_unavailable_dates');

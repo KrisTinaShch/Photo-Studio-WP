@@ -1,112 +1,135 @@
-// booking
 jQuery(document).ready(function ($) {
-    // Генерация календаря
     const calendar = $('#booking-calendar');
-    const today = new Date();
-    const year = today.getFullYear();
-    const month = today.getMonth();
-    const daysInMonth = new Date(year, month + 1, 0).getDate();
+    const controls = $('<div id="calendar-controls"><button id="prev-month">← Предыдущий месяц</button><span id="current-month-year"></span><button id="next-month">Следующий месяц →</button></div>');
 
-    // Запрос недоступных дат
-    $.post(bookingAjax.ajax_url, {
-        action: 'get_unavailable_dates',
-        nonce: bookingAjax.nonce,
-    }, function (response) {
-        if (response.success) {
-            const unavailableDates = response.data.unavailable_dates;
+    calendar.before(controls);
 
-            // Генерация календаря
-            for (let day = 1; day <= daysInMonth; day++) {
-                const date = new Date(year, month, day);
+    let currentDate = new Date();
+    let selectedDate = null;
+    let selectedTime = null;
 
-                // Генерация строки даты в локальном формате
-                const dateString = date.getFullYear() + '-' +
-                    String(date.getMonth() + 1).padStart(2, '0') + '-' +
-                    String(date.getDate()).padStart(2, '0');
+    function renderCalendar(date) {
+        const year = date.getFullYear();
+        const month = date.getMonth();
+        const daysInMonth = new Date(year, month + 1, 0).getDate();
 
-                // Проверяем, является ли день недоступным
-                const isUnavailable = unavailableDates.includes(dateString);
+        // Обновляем заголовок
+        $('#current-month-year').text(`${year}-${String(month + 1).padStart(2, '0')}`);
 
-                const dayClass = isUnavailable ? 'calendar-day unavailable' : 'calendar-day';
-                calendar.append(`<div class="${dayClass}" data-day="${day}">${day}</div>`);
-            }
-        }
-    });
+        // Очищаем календарь
+        calendar.empty();
 
-    // Подтверждение времени
-    $('#available-times').on('click', '.time-slot', function () {
-        const time = $(this).data('time');
-        const day = $('#booking-modal').data('day'); // Получаем выбранный день
-    
-        if (!time || !day) {
-            alert('Ошибка: данные о дне или времени отсутствуют.');
-            return;
-        }
-    
-        // AJAX-запрос для бронирования
+        // Запрос недоступных дат
         $.post(bookingAjax.ajax_url, {
-            action: 'book_time_slot',
+            action: 'get_unavailable_dates',
             nonce: bookingAjax.nonce,
-            day: day,
-            time: time,
+            year: year,
+            month: month + 1 // JS месяцы начинаются с 0
         }, function (response) {
             if (response.success) {
-                alert('Бронь успешно подтверждена!');
-    
-                // Убираем забронированный слот из списка доступных
-                $(`.time-slot[data-time="${time}"]`).remove();
-    
-                // Если больше нет доступных временных слотов
-                if ($('#available-times .time-slot').length === 0) {
-                    // Закрываем модальное окно
-                    $('#booking-modal').fadeOut();
-    
-                    // Обновляем класс дня в календаре
-                    const dateElement = $(`#booking-calendar .calendar-day[data-day="${day}"]`);
-                    dateElement.addClass('unavailable');
+                const unavailableDates = response.data.unavailable_dates;
+
+                // Генерация календаря
+                for (let day = 1; day <= daysInMonth; day++) {
+                    const dateString = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+                    const isUnavailable = unavailableDates.includes(dateString);
+
+                    const dayClass = isUnavailable ? 'calendar-day unavailable' : 'calendar-day';
+                    calendar.append(`<div class="${dayClass}" data-day="${day}" data-month="${month + 1}" data-year="${year}" data-date="${dateString}">${day}</div>`);
                 }
             } else {
-                alert('Ошибка бронирования: ' + response.data.message);
+                console.error('Ошибка получения недоступных дат:', response.data);
             }
         }).fail(function () {
-            alert('Ошибка сервера. Попробуйте позже.');
+            console.error('Ошибка загрузки недоступных дат.');
         });
+    }
+
+    // События переключения месяцев
+    $('#prev-month').on('click', function () {
+        currentDate.setMonth(currentDate.getMonth() - 1);
+        renderCalendar(currentDate);
     });
-    
+
+    $('#next-month').on('click', function () {
+        currentDate.setMonth(currentDate.getMonth() + 1);
+        renderCalendar(currentDate);
+    });
 
     // Клик по дню
     $('#booking-calendar').on('click', '.calendar-day', function () {
         if ($(this).hasClass('unavailable')) {
             alert('Этот день недоступен для бронирования.');
-            return; // Блокируем клик
+            return;
         }
 
-        const day = $(this).data('day'); // Получаем выбранный день
-        $('#booking-modal').data('day', day); // Сохраняем выбранный день в модальном окне
-        $('#booking-modal').fadeIn();
+        selectedDate = $(this).data('date');
         $('#available-times').html('<p>Загрузка доступных часов...</p>');
+        $('#booking-modal').fadeIn();
 
         // AJAX-запрос для получения доступных часов
         $.post(bookingAjax.ajax_url, {
             action: 'get_available_times',
             nonce: bookingAjax.nonce,
-            day: day,
+            year: $(this).data('year'),
+            month: $(this).data('month'),
+            day: $(this).data('day')
         }, function (response) {
             if (response.success) {
                 const times = response.data.times;
-                let timesHtml = '';
-                times.forEach(time => {
-                    timesHtml += `<button class="time-slot" data-time="${time}">${time}</button>`;
-                });
-                $('#available-times').html(timesHtml);
+                if (times.length === 0) {
+                    $('#available-times').html('<p>Все слоты на этот день заняты.</p>');
+                } else {
+                    let timesHtml = '';
+                    times.forEach(time => {
+                        timesHtml += `<button class="time-slot" data-time="${time}">${time}</button>`;
+                    });
+                    $('#available-times').html(timesHtml);
+                }
             } else {
-                $('#available-times').html(`<p>${response.data.message}</p>`);
+                $('#available-times').html('<p>Ошибка загрузки часов.</p>');
             }
         }).fail(function () {
-            $('#available-times').html('<p>Ошибка загрузки доступных часов.</p>');
+            $('#available-times').html('<p>Ошибка сервера при загрузке часов.</p>');
         });
     });
 
+    // Подтверждение времени
+    $('#available-times').on('click', '.time-slot', function () {
+        selectedTime = $(this).data('time');
+        $('#booking-modal').fadeOut();
+        $('#user-info-modal').fadeIn();
+    });
 
+    // Отправка данных пользователя
+    $('#user-info-form').on('submit', function (e) {
+        e.preventDefault();
 
+        const userData = {
+            action: 'book_time_slot',
+            nonce: bookingAjax.nonce,
+            day: new Date(selectedDate).getDate(),
+            month: new Date(selectedDate).getMonth() + 1,
+            year: new Date(selectedDate).getFullYear(),
+            time: selectedTime,
+            user_name: $('#user-name').val(),
+            user_phone: $('#user-phone').val(),
+            user_email: $('#user-email').val()
+        };
+
+        $.post(bookingAjax.ajax_url, userData, function (response) {
+            if (response.success) {
+                alert('Бронь успешно создана!');
+                $('#user-info-modal').fadeOut();
+                renderCalendar(new Date(selectedDate));
+            } else {
+                alert('Ошибка: ' + response.data.message);
+            }
+        }).fail(function () {
+            alert('Ошибка сервера. Попробуйте позже.');
+        });
+    });
+
+    // Инициализация календаря
+    renderCalendar(currentDate);
 });

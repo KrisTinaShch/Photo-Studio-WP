@@ -82,9 +82,10 @@ Template Name: Шаблон: "Главная страница"
    
   <section style="text-align: center;">
     <h2><?= get_field("booking_title"); ?></h2>
-
+      
+  <div id="booking-calendar"></div>                          
     <?php echo do_shortcode('[booking_calendar]'); ?>    
-    
+
   </section>
 
   <section class="photographer">

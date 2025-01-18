@@ -104,3 +104,14 @@ Stack trace:
 [18-Jan-2025 12:49:53 UTC] Данные для бронирования:
 [18-Jan-2025 12:49:53 UTC] Дата: 2025-01-19
 [18-Jan-2025 12:49:53 UTC] Время: 14:00
+[18-Jan-2025 18:31:50 UTC] WordPress database error Unknown column 'user_name' in 'field list' for query INSERT INTO `wp_booking` (`booking_date`, `booking_time`, `user_name`, `user_phone`, `user_email`) VALUES ('2025-01-03', '10:00', 'Кристина', '0889106800', 'kris.shcheglova@bk.ru') made by do_action('wp_ajax_book_time_slot'), WP_Hook->do_action, WP_Hook->apply_filters, booking_plugin_book_time_slot
+[18-Jan-2025 18:32:34 UTC] WordPress database error Unknown column 'user_name' in 'field list' for query INSERT INTO `wp_booking` (`booking_date`, `booking_time`, `user_name`, `user_phone`, `user_email`) VALUES ('2025-01-03', '10:00', 'кристина', '0889106800', 'kris.shcheglova@bk.ru') made by do_action('wp_ajax_book_time_slot'), WP_Hook->do_action, WP_Hook->apply_filters, booking_plugin_book_time_slot
+[18-Jan-2025 18:35:57 UTC] WordPress database error Unknown column 'user_name' in 'field list' for query INSERT INTO `wp_booking` (`booking_date`, `booking_time`, `user_name`, `user_phone`, `user_email`) VALUES ('2025-01-01', '11:00', 'Kristina', '0889106800', 'kris.shcheglova@bk.ru') made by do_action('wp_ajax_book_time_slot'), WP_Hook->do_action, WP_Hook->apply_filters, booking_plugin_book_time_slot
+[18-Jan-2025 18:36:27 UTC] WordPress database error Unknown column 'user_name' in 'field list' for query INSERT INTO `wp_booking` (`booking_date`, `booking_time`, `user_name`, `user_phone`, `user_email`) VALUES ('2025-01-01', '11:00', 'Kristina', '0889106800', 'kris.shcheglova@bk.ru') made by do_action('wp_ajax_book_time_slot'), WP_Hook->do_action, WP_Hook->apply_filters, booking_plugin_book_time_slot
+[18-Jan-2025 18:39:04 UTC] WordPress database error Unknown column 'user_name' in 'field list' for query INSERT INTO `wp_booking` (`booking_date`, `booking_time`, `user_name`, `user_phone`, `user_email`) VALUES ('2025-01-01', '11:00', 'Кристина', '0889106800', 'kris.shcheglova@bk.ru') made by do_action('wp_ajax_book_time_slot'), WP_Hook->do_action, WP_Hook->apply_filters, booking_plugin_book_time_slot
+[18-Jan-2025 18:39:24 UTC] WordPress database error Duplicate column name 'user_email' for query 
+        ALTER TABLE wp_booking
+        ADD COLUMN user_name varchar(100) NOT NULL,
+        ADD COLUMN user_phone varchar(20) NOT NULL,
+        ADD COLUMN user_email varchar(100) NOT NULL;
+     made by require('wp-admin/plugins.php'), activate_plugin, do_action('activate_ks-booking/booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, booking_plugin_update_table
