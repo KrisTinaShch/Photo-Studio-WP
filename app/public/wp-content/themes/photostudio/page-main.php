@@ -80,12 +80,20 @@ Template Name: Шаблон: "Главная страница"
     </div>
   </section>
    
+  
   <section style="text-align: center;">
-    <h2><?= get_field("booking_title"); ?></h2>
-      
-  <div id="booking-calendar"></div>                          
-    <?php echo do_shortcode('[booking_calendar]'); ?>    
-
+    <h2>
+      <?= get_field("booking_title"); ?>
+    </h2>
+    <div class="container">
+      <div class="row" style="flex-direction: column;">
+        <div class="booking-wrap">
+         <?php echo do_shortcode('[booking_calendar]'); ?>
+        </div>
+      </div>
+    </div>
+    </div>
+    </div>
   </section>
 
   <section class="photographer">

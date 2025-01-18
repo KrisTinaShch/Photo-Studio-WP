@@ -1,58 +1,225 @@
-/* booking */
-#booking-calendar {
-    width: 100%;
-    max-width: 600px;
+/* Общий стиль календаря */
+.booking-calendar__wrap {
+    max-width: 70%;
     margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap: 5px;
 }
 
-#booking-calendar div {
-    color: #000;
-    border: 1px solid #ccc;
-    padding: 10px;
-    text-align: center;
+#booking-calendar {
+    display: flex;
+    gap: 10px;
+    background-color: #2b2b2b;
+    border: 1px solid #444;
+    padding: 20px;
+    border-radius: 10px;
+    flex-direction: column;
+}
+
+/* Стиль дней */
+.calendar-day {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #3c3c3c;
+    color: #fff;
+    font-weight: bold;
+    font-size: 14px;
+    border-radius: 5px;
     cursor: pointer;
+    transition: all 0.3s ease;
 }
 
-#booking-calendar div.booked {
-    background-color: #f8d7da;
+/* Ховер эффект */
+.calendar-day:hover {
+    background-color: #555;
+    color: #ddd;
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
+}
+
+/* Недоступные дни */
+.calendar-day.unavailable {
+    background-color: #444;
+    color: #888;
     cursor: not-allowed;
 }
 
-#booking-modal {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: #fff;
-    padding: 20px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+/* Недоступные дни (hover отключен) */
+.calendar-day.unavailable:hover {
+    background-color: #444;
+    color: #888;
+    box-shadow: none;
 }
 
+/* Заголовок месяца и навигация */
+#calendar-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    color: #fff;
+    font-size: 16px;
+}
+
+#calendar-controls button {
+    background-color: #555;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#calendar-controls button:hover {
+    background-color: #777;
+}
+
+/* Анимация появления календаря */
+#booking-calendar .calendar-day {
+    opacity: 0;
+    transform: scale(0.9);
+    animation: fadeIn 0.4s ease forwards;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Модальное окно */
+#booking-modal,
+#user-info-modal {
+    background-color: #333;
+    color: #fff;
+    border: 1px solid #444;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+    margin-top: 20px;
+}
+
+#booking-modal h3,
+#user-info-modal h3 {
+    margin-top: 0;
+    color: #ddd;
+}
+
+#user-info-form label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: #aaa;
+}
+
+#user-info-form input {
+    width: 90%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #555;
+    border-radius: 5px;
+    background-color: #222;
+    color: #fff;
+}
+
+#user-info-form button {
+    background-color: #555;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#user-info-form button:hover {
+    background-color: #777;
+}
+
+/* Стили для доступных часов */
+#available-times button {
+    background-color: #444;
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    margin-right: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#available-times button:hover {
+    background-color: #666;
+    color: #ddd;
+}
+
+#available-times p {
+    color: #bbb;
+    font-size: 14px;
+}
+
+/* Сетка для дней недели */
+.calendar-week-row {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    background-color: #2b2b2b;
+    padding: 10px;
+    border-bottom: 1px solid #444;
+    text-align: center;
+}
+
+/* Стили для дней недели */
+.calendar-week {
+    color: #fff;
+    font-weight: bold;
+    font-size: 14px;
+    text-transform: uppercase;
+}
+
+
+.calendar-week-row {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    /* Семь колонок для дней недели */
+    gap: 10px;
+    background-color: #444;
+    padding: 10px;
+    text-align: center;
+    font-weight: bold;
+    color: #fff;
+    border-bottom: 1px solid #555;
+}
+
+.calendar-dates-row {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    /* Семь колонок для дат */
+    gap: 10px;
+}
+
+.calendar-week,
 .calendar-day {
     text-align: center;
     padding: 10px;
-    border: 1px solid #ddd;
-    cursor: pointer;
-    background-color: #f9f9f9;
-    transition: background-color 0.3s ease;
+    font-size: 14px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #3c3c3c;
+    border-radius: 5px;
+    transition: all 0.3s ease;
 }
 
-.calendar-day:hover {
-    background-color: #eaeaea;
+.calendar-day.empty {
+    background-color: transparent;
+    /* Пустые ячейки */
+    color: transparent;
+    /* Скройте текст */
+    cursor: default;
+    box-shadow: none;
 }
 
-.calendar-day.unavailable {
-    background-color: #f8d7da;
-    /* Красный фон для недоступных дней */
-    cursor: not-allowed;
-    color: #a0a0a0;
-    /* Бледный текст */
-}
-
-.calendar-day.unavailable:hover {
-    background-color: #f8d7da;
-    /* Недоступные дни не меняют цвет при наведении */
+.booking-wrap {
+    max-width: 50%;
+    margin: 0 auto;
 }
