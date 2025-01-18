@@ -7,57 +7,45 @@ jQuery(document).ready(function ($) {
     let currentDate = new Date();
     let selectedDate = null;
     let selectedTime = null;
+
     function renderCalendar(date) {
         const year = date.getFullYear();
         const month = date.getMonth();
         const daysInMonth = new Date(year, month + 1, 0).getDate();
-    
-        // День недели первого числа месяца
-        const firstDayOfMonth = new Date(year, month, 1).getDay();
-        const adjustedFirstDay = (firstDayOfMonth === 0 ? 6 : firstDayOfMonth - 1);
-    
-        // День недели последнего числа месяца
-        const lastDayOfMonth = new Date(year, month, daysInMonth).getDay();
-        const adjustedLastDay = (lastDayOfMonth === 0 ? 6 : lastDayOfMonth - 1);
-    
+
+        // Обновляем заголовок
+        $('#current-month-year').text(`${year}-${String(month + 1).padStart(2, '0')}`);
+
         // Очищаем календарь
         calendar.empty();
-    
-        // Добавляем ряд с днями недели
-        const weekDays = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'];
-        const weekDaysRow = $('<div class="calendar-week-row"></div>');
-        weekDays.forEach(day => {
-            weekDaysRow.append(`<div class="calendar-week">${day}</div>`);
+
+        // Запрос недоступных дат
+        $.post(bookingAjax.ajax_url, {
+            action: 'get_unavailable_dates',
+            nonce: bookingAjax.nonce,
+            year: year,
+            month: month + 1 // JS месяцы начинаются с 0
+        }, function (response) {
+            if (response.success) {
+                const unavailableDates = response.data.unavailable_dates;
+
+                for (let day = 1; day <= daysInMonth; day++) {
+                    const dateString = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+                    const currentDate = new Date();
+                    const loopDate = new Date(year, month, day);
+
+                    const isUnavailable = unavailableDates.includes(dateString) || loopDate < currentDate;
+
+                    const dayClass = isUnavailable ? 'calendar-day unavailable' : 'calendar-day';
+                    calendar.append(`<div class="${dayClass}" data-day="${day}" data-month="${month + 1}" data-year="${year}" data-date="${dateString}">${day}</div>`);
+                }
+            } else {
+                console.error('Ошибка получения недоступных дат:', response.data);
+            }
+        }).fail(function () {
+            console.error('Ошибка загрузки недоступных дат.');
         });
-        calendar.append(weekDaysRow);
-    
-        // Добавляем ячейки календаря
-        const dates = [];
-    
-        // Пустые ячейки перед началом месяца
-        for (let i = 0; i < adjustedFirstDay; i++) {
-            dates.push('<div class="calendar-day empty"></div>');
-        }
-    
-        // Ячейки текущего месяца
-        for (let day = 1; day <= daysInMonth; day++) {
-            dates.push(`<div class="calendar-day">${day}</div>`);
-        }
-    
-        // Пустые ячейки после конца месяца
-        for (let i = 0; i < (6 - adjustedLastDay); i++) {
-            dates.push('<div class="calendar-day empty"></div>');
-        }
-    
-        // Добавляем ячейки на страницу
-        const calendarDatesRow = $('<div class="calendar-dates-row"></div>');
-        calendarDatesRow.append(dates.join(''));
-        calendar.append(calendarDatesRow);
     }
-    
-    
-
-
 
 
     // События переключения месяцев
