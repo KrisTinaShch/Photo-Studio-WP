@@ -29,10 +29,12 @@ jQuery(document).ready(function ($) {
             if (response.success) {
                 const unavailableDates = response.data.unavailable_dates;
 
-                // Генерация календаря
                 for (let day = 1; day <= daysInMonth; day++) {
                     const dateString = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
-                    const isUnavailable = unavailableDates.includes(dateString);
+                    const currentDate = new Date();
+                    const loopDate = new Date(year, month, day);
+
+                    const isUnavailable = unavailableDates.includes(dateString) || loopDate < currentDate;
 
                     const dayClass = isUnavailable ? 'calendar-day unavailable' : 'calendar-day';
                     calendar.append(`<div class="${dayClass}" data-day="${day}" data-month="${month + 1}" data-year="${year}" data-date="${dateString}">${day}</div>`);
@@ -44,6 +46,7 @@ jQuery(document).ready(function ($) {
             console.error('Ошибка загрузки недоступных дат.');
         });
     }
+
 
     // События переключения месяцев
     $('#prev-month').on('click', function () {
@@ -129,7 +132,34 @@ jQuery(document).ready(function ($) {
             alert('Ошибка сервера. Попробуйте позже.');
         });
     });
+    $(document).on('click', '.delete-booking', function () {
+        const bookingId = $(this).data('id');
+        console.log('ID для удаления:', bookingId); // Отладка
+
+        if (!confirm('Вы уверены, что хотите отменить это бронирование?')) {
+            return;
+        }
+
+        $.post(bookingAjax.ajax_url, {
+            action: 'delete_booking',
+            nonce: bookingAjax.nonce,
+            booking_id: bookingId
+        }, function (response) {
+            console.log('Ответ сервера:', response); // Отладка
+
+            if (response.success) {
+                alert('Бронь успешно отменена.');
+                location.reload();
+            } else {
+                alert('Ошибка: ' + response.data.message);
+            }
+        }).fail(function () {
+            alert('Ошибка сервера. Попробуйте позже.');
+        });
+    });
 
     // Инициализация календаря
     renderCalendar(currentDate);
 });
+
+

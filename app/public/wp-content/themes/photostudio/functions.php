@@ -181,3 +181,4 @@ function enqueue_jquery_if_missing() {
     }
 }
 add_action('wp_enqueue_scripts', 'enqueue_jquery_if_missing');
+

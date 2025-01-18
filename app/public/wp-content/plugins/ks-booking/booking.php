@@ -9,6 +9,67 @@ Author: Kristina Shcheglova
 if (!defined('ABSPATH')) {
     exit; 
 }
+function booking_plugin_create_admin_menu() {
+    add_menu_page(
+        'Бронирования', // Название страницы
+        'Бронирования', // Название меню
+        'manage_options', // Права доступа
+        'booking-plugin', // Слаг меню
+        'booking_plugin_admin_page', // Функция отображения страницы
+        'dashicons-calendar-alt', // Иконка меню
+        6 // Позиция меню
+    );
+}
+add_action('admin_menu', 'booking_plugin_create_admin_menu');
+function booking_plugin_admin_page() {
+    global $wpdb;
+    $table_name = $wpdb->prefix . 'booking';
+
+    $bookings = $wpdb->get_results("SELECT * FROM $table_name ORDER BY booking_date DESC, booking_time ASC");
+
+    ?>
+    <div class="wrap">
+        <h1>Список бронирований</h1>
+        <table class="wp-list-table widefat fixed striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Дата</th>
+                    <th>Время</th>
+                    <th>Имя</th>
+                    <th>Телефон</th>
+                    <th>Емейл</th>
+                    <th>Действия</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php if (!empty($bookings)): ?>
+                    <?php foreach ($bookings as $booking): ?>
+                        <tr>
+                            <td><?php echo esc_html($booking->id); ?></td>
+                            <td><?php echo esc_html($booking->booking_date); ?></td>
+                            <td><?php echo esc_html($booking->booking_time); ?></td>
+                            <td><?php echo esc_html($booking->user_name); ?></td>
+                            <td><?php echo esc_html($booking->user_phone); ?></td>
+                            <td><?php echo esc_html($booking->user_email); ?></td>
+                            <td>
+                                <button class="delete-booking" data-id="<?php echo esc_attr($booking->id); ?>">
+                                    Отменить
+                                </button>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <tr>
+                        <td colspan="7">Нет бронирований</td>
+                    </tr>
+                <?php endif; ?>
+            </tbody>
+        </table>
+    </div>
+    <?php
+}
+
 
 function booking_plugin_create_table() {
     global $wpdb;
@@ -39,6 +100,8 @@ function booking_plugin_enqueue_scripts() {
     ]);
 }
 add_action('wp_enqueue_scripts', 'booking_plugin_enqueue_scripts');
+add_action('admin_enqueue_scripts', 'booking_plugin_enqueue_scripts');
+
 
 function booking_plugin_calendar_shortcode() {
     ob_start();
@@ -160,6 +223,15 @@ function booking_plugin_get_unavailable_dates() {
 
     $unavailable_dates = [];
 
+    // Добавляем прошедшие даты
+    $current_date = new DateTime();
+    for ($day = 1; $day <= (int)date('t', strtotime($start_date)); $day++) {
+        $date = DateTime::createFromFormat('Y-m-d', sprintf('%04d-%02d-%02d', $year, $month, $day));
+        if ($date < $current_date) {
+            $unavailable_dates[] = $date->format('Y-m-d');
+        }
+    }
+
     foreach ($results as $result) {
         if ((int)$result->booked_slots >= $total_slots) {
             $unavailable_dates[] = $result->booking_date;
@@ -170,3 +242,31 @@ function booking_plugin_get_unavailable_dates() {
 }
 add_action('wp_ajax_get_unavailable_dates', 'booking_plugin_get_unavailable_dates');
 add_action('wp_ajax_nopriv_get_unavailable_dates', 'booking_plugin_get_unavailable_dates');
+
+
+function booking_plugin_delete_booking() {
+    check_ajax_referer('booking_nonce', 'nonce'); // Проверяем nonce для безопасности
+
+    $booking_id = isset($_POST['booking_id']) ? intval($_POST['booking_id']) : 0;
+
+    if ($booking_id <= 0) {
+        wp_send_json_error(['message' => 'Неверный ID бронирования.']);
+    }
+
+    global $wpdb;
+    $table_name = $wpdb->prefix . 'booking';
+
+    // Удаляем запись из базы данных
+    $result = $wpdb->delete($table_name, ['id' => $booking_id]);
+
+    if ($result) {
+        wp_send_json_success(['message' => 'Бронь успешно отменена.']);
+    } else {
+        wp_send_json_error(['message' => 'Ошибка при удалении бронирования.']);
+    }
+}
+
+add_action('wp_ajax_delete_booking', 'booking_plugin_delete_booking');
+
+
+
