@@ -17,7 +17,6 @@ Template Name: Шаблон: "Главная страница"
       <source src="<?php echo esc_url(get_field('hero_bg_video')['url']); ?>" type="video/mp4">
     </video>
   </section>
-
   <section class="works">
     <div class="container">
       <h2><?= get_field("works_title"); ?></h2>
@@ -81,9 +80,20 @@ Template Name: Шаблон: "Главная страница"
     </div>
   </section>
    
+  
   <section style="text-align: center;">
-    <h2><?= get_field("booking_title"); ?></h2>
-    <p>....</p>
+    <h2>
+      <?= get_field("booking_title"); ?>
+    </h2>
+    <div class="container">
+      <div class="row" style="flex-direction: column;">
+        <div class="booking-wrap">
+         <?php echo do_shortcode('[booking_calendar]'); ?>
+        </div>
+      </div>
+    </div>
+    </div>
+    </div>
   </section>
 
   <section class="photographer">

@@ -269,6 +269,24 @@ h3 {
 .photographer .photographer-image {
     max-width: 70%;
     margin: 0 auto;
+    position: relative;
+}
+
+.photographer .photographer-image img {
+    position: relative;
+    z-index: 1;
+}
+
+.photographer .photographer-image::after {
+    position: absolute;
+    z-index: 0;
+    content: '';
+    width: 25vw;
+    height: 25vw;
+    background: #BC002D;
+    left: 5%;
+    top: 0;
+    border-radius: 50%;
 }
 
 .photographer .photographer-content {
@@ -330,7 +348,6 @@ h3 {
 .footer .footer-bottom {
     text-align: center;
 }
-
 
 /* Show burger only on mobile */
 @media (max-width: 768px) {
