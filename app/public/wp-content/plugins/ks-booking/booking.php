@@ -266,3 +266,6 @@ function booking_plugin_delete_booking() {
 }
 
 add_action('wp_ajax_delete_booking', 'booking_plugin_delete_booking');
+
+
+

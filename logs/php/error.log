@@ -119,3 +119,10 @@ Stack trace:
         ADD COLUMN user_email varchar(100) NOT NULL;
      made by require('wp-admin/plugins.php'), activate_plugin, do_action('activate_ks-booking/booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, booking_plugin_update_table
 >>>>>>> origin/main
+[21-Jan-2025 10:31:11 UTC] WordPress database error Unknown column 'payment_intent_id' in 'field list' for query UPDATE `wp_booking` SET `payment_intent_id` = 'pi_3QjenN4ed8ZgHhKt15OQXdUO' WHERE `id` = '13' made by do_action('wp_ajax_book_time_slot'), WP_Hook->do_action, WP_Hook->apply_filters, booking_plugin_book_time_slot
+[21-Jan-2025 10:31:54 UTC] WordPress database error Unknown column 'payment_intent_id' in 'field list' for query UPDATE `wp_booking` SET `payment_intent_id` = 'pi_3Qjeo54ed8ZgHhKt1cvfqoSv' WHERE `id` = '14' made by do_action('wp_ajax_book_time_slot'), WP_Hook->do_action, WP_Hook->apply_filters, booking_plugin_book_time_slot
+[21-Jan-2025 10:43:27 UTC] WordPress database error Unknown column 'payment_status' in 'where clause' for query 
+        SELECT * FROM wp_booking
+        WHERE booking_date = '2025-01-25' AND payment_status = 'authorized'
+     made by do_action_ref_array('booking_plugin_capture_payments'), WP_Hook->do_action, WP_Hook->apply_filters, booking_plugin_capture_payments
+[21-Jan-2025 10:44:53 UTC] WordPress database error Unknown column 'payment_intent_id' in 'field list' for query UPDATE `wp_booking` SET `payment_intent_id` = 'pi_3Qjf0e4ed8ZgHhKt0NfXwwyq' WHERE `id` = '15' made by do_action('wp_ajax_book_time_slot'), WP_Hook->do_action, WP_Hook->apply_filters, booking_plugin_book_time_slot

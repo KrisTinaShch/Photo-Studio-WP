@@ -20,6 +20,8 @@
   <link rel="stylesheet" href="<?php echo get_template_directory_uri();?>/assets/css/reset.css">
   <link rel="stylesheet" href="<?php echo get_template_directory_uri();?>/assets/css/grid.css">
   <link rel="stylesheet" href="<?php echo get_template_directory_uri();?>/assets/css/style.css">
+  <script src="https://js.stripe.com/v3/" defer></script>
+
   <?php wp_head(); ?>
 </head>
 

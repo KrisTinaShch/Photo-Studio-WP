@@ -184,3 +184,5 @@ jQuery(document).ready(function ($) {
     renderCalendar(currentDate);
     enableCancelBooking(); // Обработчик для кнопки "Отменить бронь"
 });
+
+
