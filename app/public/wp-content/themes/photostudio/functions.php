@@ -146,6 +146,10 @@ function photostudio_scripts() {
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
+
+	wp_enqueue_script('jquery');
+	wp_enqueue_script('slick-script', get_template_directory_uri() . '/assets/libraries/slick-1.8.1/slick/slick.min.js', array('jquery'), null, true);
+    wp_enqueue_script('photostudio-main', get_template_directory_uri() . '/assets/scripts/main.js', array('jquery', 'slick-script'), null, true);
 }
 add_action( 'wp_enqueue_scripts', 'photostudio_scripts' );
 

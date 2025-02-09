@@ -18,8 +18,11 @@
   	<meta charset="<?php bloginfo( 'charset' ); ?>">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="<?php echo get_template_directory_uri();?>/assets/css/reset.css">
+  <link rel="stylesheet" type="text/css" href="<?php echo get_template_directory_uri();?>/assets/libraries/slick-1.8.1/slick/slick.css"/>
+  <link rel="stylesheet" type="text/css" href="<?php echo get_template_directory_uri();?>/assets/libraries/slick-1.8.1/slick/slick-theme.css"/>
   <link rel="stylesheet" href="<?php echo get_template_directory_uri();?>/assets/css/grid.css">
   <link rel="stylesheet" href="<?php echo get_template_directory_uri();?>/assets/css/style.css">
+ 
   <script src="https://js.stripe.com/v3/" defer></script>
 
   <?php wp_head(); ?>
@@ -42,11 +45,6 @@
          <?php if(get_field('site_menu_repeater','options')) :?>
             <?php while(has_sub_field('site_menu_repeater','options')): ?>
               <li><a href="<?php the_sub_field('menu_link_link','options')?>"><?php the_sub_field('menu_link_name','options')?></a></li>
-          <!-- <li><a href="#about">Оборудование</a></li>
-          <li><a href="#services">Услуги</a></li>
-          <li><a href="#photographer">Фотограф</a></li>
-          <li><a href="#works">Работы</a></li>
-          <li><a href="#contact">Контакты</a></li> -->
             <?php endwhile;?>
           <?php endif; ?>
         </ul>

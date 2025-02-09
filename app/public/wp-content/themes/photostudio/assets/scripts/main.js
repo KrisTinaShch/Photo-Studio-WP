@@ -14,3 +14,12 @@ burgerIcon.addEventListener('click', () => {
   burgerIcon.classList.toggle('active');
   navMenu.classList.toggle('open');
 });
+
+jQuery(document).ready(function ($) {
+  $('.test-carousel').slick({
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    infinite: true,
+    arrows: true,
+  });
+});

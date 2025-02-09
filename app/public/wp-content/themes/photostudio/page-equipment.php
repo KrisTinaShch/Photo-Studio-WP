@@ -5,8 +5,8 @@ Template Name: Шаблон: "Оборудование"
 ?>
 <?php get_header();?>
 
-<section class="hero-equipment">
-    <div class="hero-equipment__text">
+<section class="page-subheader">
+    <div class="page-subheader__text">
       <h1><?= get_field("equipment_hero_title"); ?></h1>
       <p><?= get_field("equipment_hero_subtitle"); ?></p>
     </div>

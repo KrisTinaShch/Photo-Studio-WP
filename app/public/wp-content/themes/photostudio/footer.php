@@ -19,12 +19,11 @@
         </div>
         <div class="footer-links">
           <ul>
-            <li><a href="#home">Залы</a></li>
-            <li><a href="#about">Оборудование</a></li>
-            <li><a href="#services">Услуги</a></li>
-            <li><a href="#photographer">Фотограф</a></li>
-            <li><a href="#works">Работы</a></li>
-            <li><a href="#contact">Контакты</a></li>
+          <?php if(get_field('site_menu_repeater','options')) :?>
+            <?php while(has_sub_field('site_menu_repeater','options')): ?>
+              <li><a href="<?php the_sub_field('menu_link_link','options')?>"><?php the_sub_field('menu_link_name','options')?></a></li>
+            <?php endwhile;?>
+          <?php endif; ?>
           </ul>
         </div>
         <div class="footer-socials">
@@ -44,9 +43,6 @@
       </div>
     </div>
   </footer>
-
-
-  <script src="<?php echo get_template_directory_uri();?>/assets/scripts/main.js"></script>
 
   <?php wp_footer(); ?>
 </body>
