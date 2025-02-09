@@ -110,7 +110,6 @@ function booking_plugin_calendar_shortcode() {
     <div id="booking-modal" style="display: none;">
         <h3>Выберите время</h3>
         <div id="available-times"></div>
-        <button id="booking-confirm">Подтвердить</button>
     </div>
     <div id="user-info-modal" style="display: none;">
         <h3>Введите ваши данные</h3>

@@ -11,7 +11,8 @@
     background-color: #2b2b2b;
     border: 1px solid #444;
     padding: 20px;
-    border-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
 }
 
 /* Стиль дней */
@@ -183,16 +184,6 @@
     text-transform: uppercase;
 }
 
-#booking-calendar {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    /* Семь колонок для дней недели и дат */
-    gap: 10px;
-    background-color: #2b2b2b;
-    border: 1px solid #444;
-    padding: 20px;
-    border-radius: 10px;
-}
 
 .calendar-week-row {
     display: grid;
@@ -217,11 +208,11 @@
 .calendar-week,
 .calendar-day {
     text-align: center;
-    padding: 10px;
+    padding: 40px 10px;
     font-size: 14px;
     font-weight: bold;
     color: #fff;
-    background-color: #3c3c3c;
+    background-color: #5a5a5a;
     border-radius: 5px;
     transition: all 0.3s ease;
 }
@@ -233,4 +224,37 @@
     /* Скройте текст */
     cursor: default;
     box-shadow: none;
+}
+
+/* Сетка для дней недели */
+.calendar-week-row {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    background-color: #444;
+    padding: 10px 20px;
+    border-bottom: 1px solid #555;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+    color: #fff;
+    text-transform: uppercase;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+/* Стили для дней недели */
+.calendar-week {
+    padding: 10px;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    color: #ddd;
+}
+
+@media only screen and (max-width: 600px) {
+
+    .calendar-week,
+    .calendar-day {
+        padding: 10px;
+    }
 }

@@ -15,7 +15,7 @@
     <div class="container">
       <div class="footer-content">
         <div class="footer-logo">
-          <a href="#" class="logo"><img src="<?php echo get_template_directory_uri();?>/assets/img/logo.webp" alt="logo"></a>
+          <a href="/../" class="logo"><img src="<?php the_field('site_logo','options');?>" alt="logo"></a>
         </div>
         <div class="footer-links">
           <ul>
@@ -29,24 +29,25 @@
         </div>
         <div class="footer-socials">
           <ul>
-            <li><a href="#social" class="social-links"><img src="<?php echo get_template_directory_uri();?>/assets/img/social/social.png" alt="instagram"
+            <li><a href="<?php the_field('site_instagram_link','options');?>" class="social-links"><img src="<?php echo get_template_directory_uri();?>/assets/img/social/social.png" alt="instagram"
                   class="social-link"></a></li>
-            <li><a href="#facebook" class="social-links"><img src="<?php echo get_template_directory_uri();?>/assets/img/social/facebook.png" alt="facebook"
+            <li><a href="<?php the_field('site_facebook_link','options');?>" class="social-links"><img src="<?php echo get_template_directory_uri();?>/assets/img/social/facebook.png" alt="facebook"
                   class="social-link"> </a>
             </li>
-            <li><a href="#youtube" class="social-links"><img src="<?php echo get_template_directory_uri();?>/assets/img/social/youtube.png" alt="youtube"
+            <li><a href="<?php the_field('site_youtube_link','options');?>" class="social-links"><img src="<?php echo get_template_directory_uri();?>/assets/img/social/youtube.png" alt="youtube"
                   class="social-link"></a></li>
           </ul>
         </div>
       </div>
       <div class="footer-bottom">
-        <p>&copy; 2025 Photo Studio. Все права защищены.</p>
+        <p><?php the_field('site_descriptor','options');?></p>
       </div>
     </div>
   </footer>
 
 
   <script src="<?php echo get_template_directory_uri();?>/assets/scripts/main.js"></script>
+
   <?php wp_footer(); ?>
 </body>
 

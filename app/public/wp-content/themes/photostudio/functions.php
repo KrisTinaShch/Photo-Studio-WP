@@ -182,3 +182,11 @@ function enqueue_jquery_if_missing() {
 }
 add_action('wp_enqueue_scripts', 'enqueue_jquery_if_missing');
 
+
+if(function_exists("acf_add_options_page")){
+	acf_add_options_page(array(
+		"page_title" => "Настройки сайта",
+		"menu_title" => "Настройки сайта",
+		"menu_slug" => "theme_settings",
+	));
+}
