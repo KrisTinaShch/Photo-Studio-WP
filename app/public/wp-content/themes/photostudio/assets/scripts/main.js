@@ -22,4 +22,27 @@ jQuery(document).ready(function ($) {
     infinite: true,
     arrows: true,
   });
+  $('.work-carousel__container').slick({
+    centerMode: true,
+    centerPadding: '0px',
+    slidesToShow: 3,
+    responsive: [
+      {
+        breakpoint: 768,
+        settings: {
+          centerMode: true,
+          centerPadding: '0px',
+          slidesToShow: 3
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          centerMode: true,
+          centerPadding: '0px',
+          slidesToShow: 1
+        }
+      }
+    ]
+  });
 });

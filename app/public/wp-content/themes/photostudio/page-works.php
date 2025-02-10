@@ -23,33 +23,31 @@ Template Name: Шаблон: "Работы"
   </section>
 
 
- <section>
+  <section> 
     <div class="container">
-        <div class="halls-container">
-        <?php if( have_rows('halls_repeater') ): ?>
-            <?php while( have_rows('halls_repeater') ): the_row(); ?>
-            <div class="test-carousels">
-                <div class="test-carousel">
-                <?php if( have_rows('hall_image_repeater') ): ?>
-                    <?php while( have_rows('hall_image_repeater') ): the_row(); ?>
-                    <div>
-                        <?php 
-                            $image = get_sub_field('hall_image__item'); 
-                            if( $image ): ?>
-                                <img src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>">
-                        <?php endif; ?>
+        <div class="works-container">
+            <?php if( have_rows('carousel_block_repeater') ): ?>
+                <?php while( have_rows('carousel_block_repeater') ): the_row(); ?>
+                    <div class="work-carousel__block">
+                        <h2 class="work-carousel__type"><?php the_sub_field('carousel__type_name'); ?></h2>
+
+                        <div class="work-carousel__container">
+                            <?php 
+                                $gallery = get_sub_field('carousel_item_image'); 
+                                if( $gallery ): ?>
+                                    <?php foreach( $gallery as $image ): ?>
+                                        <div class="work-carousel__item">
+                                            <img src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>">
+                                        </div>
+                                    <?php endforeach; ?>
+                            <?php endif; ?>
+                        </div>
                     </div>
-                        <?php endwhile; ?>
-                    <?php endif; ?>
-                
-                </div>
-                <h2 class="item-card__title"><?= get_sub_field("hall_item_title"); ?></h2>
-                <p class="item-card__subtitle"><?= get_sub_field("hall_item_description"); ?></p>
-            </div>
-            <?php endwhile; ?>
+                <?php endwhile; ?>
             <?php endif; ?>
         </div>
     </div>
- </section>
+</section>
 
-<?php get_footer();?>
+
+<?php get_footer(); ?>

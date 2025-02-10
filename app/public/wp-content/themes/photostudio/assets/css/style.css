@@ -468,6 +468,24 @@ h3 {
     color: #c3c3c3;
 }
 
+/* works */
+.work-carousel__container{
+    margin-top: -60px;
+}
+.work-carousel__item{
+    padding: 100px 0;
+    transition: 0.3s ease;
+    transform: scale(1);
+    filter: brightness(0.5);
+}
+
+.work-carousel__item.slick-center{
+    transform: scale(1.2);
+    filter: brightness(1);
+    z-index: 9;
+    position: relative;
+}
+
 /* footer */
 .footer {
     background: #181818;
@@ -643,5 +661,12 @@ h3 {
     }
     .page-subheader__text p {
         font-size: 7vw;
+    }
+    .work-carousel__item.slick-center{
+        transform: scale(1);
+    }
+    .work-carousel__container {
+        margin-top: -100px;
+        margin-bottom: -100px;
     }
 }
