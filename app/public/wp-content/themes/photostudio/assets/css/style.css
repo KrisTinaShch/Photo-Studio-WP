@@ -469,17 +469,18 @@ h3 {
 }
 
 /* works */
-.work-carousel__container{
+.work-carousel__container {
     margin-top: -60px;
 }
-.work-carousel__item{
+
+.work-carousel__item {
     padding: 100px 0;
     transition: 0.3s ease;
     transform: scale(1);
     filter: brightness(0.5);
 }
 
-.work-carousel__item.slick-center{
+.work-carousel__item.slick-center {
     transform: scale(1.2);
     filter: brightness(1);
     z-index: 9;
@@ -490,11 +491,12 @@ h3 {
 .footer {
     background: #181818;
     padding: 40px 0;
+    margin-top: 150px;
 }
 
 .footer .footer-content {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     align-items: center;
 }
 
@@ -523,6 +525,38 @@ h3 {
 
 .footer-logo {
     max-width: 90px;
+}
+
+.contacts_leftside {
+    background: #191c21;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 20px;
+    border-radius: 10px 0 0 10px;
+}
+
+.contacts_rightside {
+    height: 100%;
+
+}
+
+.contacts_rightside iframe {
+    border-radius: 0px 10px 10px 0px;
+}
+
+.contacts_leftside .social_links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.contacts_leftside .social_links img {
+    max-width: 40px;
 }
 
 /* Show burger only on mobile */
@@ -626,28 +660,33 @@ h3 {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
     }
+
     .page-subheader__text h1 {
         font-size: 7vw;
     }
+
     .page-subheader__text p {
         font-size: 3vw;
     }
 }
 
 @media (max-width: 600px) {
-    .equipment .equipment-item{
+    .equipment .equipment-item {
         margin: 0;
         gap: 10px;
         margin-bottom: 40px;
     }
+
     .equipment .equipment-item__price {
         font-size: 4.1vw;
     }
+
     .equipment .equipment-item__title {
         margin: 0;
         font-size: 4.2vw;
         padding: 0 10px;
     }
+
     .halls-container {
         display: grid;
         grid-template-columns: 1fr;
@@ -656,15 +695,19 @@ h3 {
     .item-card__title {
         font-size: 6.2vw;
     }
+
     .page-subheader__text h1 {
         font-size: 10vw;
     }
+
     .page-subheader__text p {
         font-size: 7vw;
     }
-    .work-carousel__item.slick-center{
+
+    .work-carousel__item.slick-center {
         transform: scale(1);
     }
+
     .work-carousel__container {
         margin-top: -100px;
         margin-bottom: -100px;
