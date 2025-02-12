@@ -131,3 +131,185 @@ Stack trace:
 [05-Feb-2025 21:18:22 UTC] PHP Warning:  Trying to access array offset on value of type bool in C:\Users\piska\Local Sites\photostudio\app\public\wp-content\themes\photostudio\page-equipment.php on line 14
 [07-Feb-2025 20:07:26 UTC] PHP Parse error:  syntax error, unexpected token "}" in C:\Users\piska\Local Sites\photostudio\app\public\wp-content\themes\photostudio\functions.php on line 191
 [09-Feb-2025 19:54:54 UTC] PHP Parse error:  syntax error, unexpected token ";", expecting variable or "{" or "$" in C:\Users\piska\Local Sites\photostudio\app\public\wp-content\themes\photostudio\page-halls.php on line 48
+[11-Feb-2025 19:28:36 UTC] WordPress database error Unknown column 'package' in 'field list' for query INSERT INTO `wp_booking` (`booking_date`, `booking_time`, `package`, `cameras`, `user_name`, `user_phone`, `user_email`) VALUES ('2025-02-12', '10:00', '3', '0', 'Test Test Test', '0889999999', 'k.shcheglova@wowtea.eu') made by do_action('wp_ajax_book_time_slot'), WP_Hook->do_action, WP_Hook->apply_filters, booking_plugin_book_time_slot
+[11-Feb-2025 19:28:39 UTC] WordPress database error Unknown column 'package' in 'field list' for query INSERT INTO `wp_booking` (`booking_date`, `booking_time`, `package`, `cameras`, `user_name`, `user_phone`, `user_email`) VALUES ('2025-02-12', '10:00', '3', '0', 'Test Test Test', '0889999999', 'k.shcheglova@wowtea.eu') made by do_action('wp_ajax_book_time_slot'), WP_Hook->do_action, WP_Hook->apply_filters, booking_plugin_book_time_slot
+[11-Feb-2025 19:29:23 UTC] WordPress database error Unknown column 'package' in 'field list' for query INSERT INTO `wp_booking` (`booking_date`, `booking_time`, `package`, `cameras`, `user_name`, `user_phone`, `user_email`) VALUES ('2025-02-12', '10:00', '3', '0', 'Test Test Test', '0889999999', 'k.shcheglova@wowtea.eu') made by do_action('wp_ajax_book_time_slot'), WP_Hook->do_action, WP_Hook->apply_filters, booking_plugin_book_time_slot
+[11-Feb-2025 19:37:12 UTC] WordPress database error Unknown column 'package' in 'field list' for query INSERT INTO `wp_booking` (`booking_date`, `booking_time`, `package`, `cameras`, `user_name`, `user_phone`, `user_email`) VALUES ('2025-02-12', '10:00', '1', '0', 'Test Test Test', '0889999999', 'k.shcheglova@wowtea.eu') made by do_action('wp_ajax_book_time_slot'), WP_Hook->do_action, WP_Hook->apply_filters, booking_plugin_book_time_slot
+[11-Feb-2025 19:38:48 UTC] WordPress database error Unknown column 'package' in 'field list' for query INSERT INTO `wp_booking` (`booking_date`, `booking_time`, `package`, `cameras`, `user_name`, `user_phone`, `user_email`) VALUES ('2025-02-18', '10:00', '1', '0', 'булевард „България“ 81б, София, България', '0889106800', 'kris.shcheglova@bk.ru') made by do_action('wp_ajax_book_time_slot'), WP_Hook->do_action, WP_Hook->apply_filters, booking_plugin_book_time_slot
+[11-Feb-2025 19:49:59 UTC] WordPress database error Table 'local.wp_booking' doesn't exist for query SELECT booking_date, COUNT(DISTINCT booking_time) as booked_slots 
+         FROM wp_booking 
+         WHERE booking_date BETWEEN '2025-02-01' AND '2025-02-28' 
+         GROUP BY booking_date made by do_action('wp_ajax_get_unavailable_dates'), WP_Hook->do_action, WP_Hook->apply_filters, booking_plugin_get_unavailable_dates
+[11-Feb-2025 19:50:00 UTC] WordPress database error Table 'local.wp_booking' doesn't exist for query SELECT booking_date, COUNT(DISTINCT booking_time) as booked_slots 
+         FROM wp_booking 
+         WHERE booking_date BETWEEN '2025-02-01' AND '2025-02-28' 
+         GROUP BY booking_date made by do_action('wp_ajax_get_unavailable_dates'), WP_Hook->do_action, WP_Hook->apply_filters, booking_plugin_get_unavailable_dates
+[11-Feb-2025 19:50:01 UTC] WordPress database error Table 'local.wp_booking' doesn't exist for query SELECT booking_date, COUNT(DISTINCT booking_time) as booked_slots 
+         FROM wp_booking 
+         WHERE booking_date BETWEEN '2025-02-01' AND '2025-02-28' 
+         GROUP BY booking_date made by do_action('wp_ajax_get_unavailable_dates'), WP_Hook->do_action, WP_Hook->apply_filters, booking_plugin_get_unavailable_dates
+[11-Feb-2025 19:50:06 UTC] WordPress database error Table 'local.wp_booking' doesn't exist for query SELECT booking_date, COUNT(DISTINCT booking_time) as booked_slots 
+         FROM wp_booking 
+         WHERE booking_date BETWEEN '2025-02-01' AND '2025-02-28' 
+         GROUP BY booking_date made by do_action('wp_ajax_get_unavailable_dates'), WP_Hook->do_action, WP_Hook->apply_filters, booking_plugin_get_unavailable_dates
+[11-Feb-2025 19:50:08 UTC] WordPress database error Table 'local.wp_booking' doesn't exist for query SELECT booking_date, COUNT(DISTINCT booking_time) as booked_slots 
+         FROM wp_booking 
+         WHERE booking_date BETWEEN '2025-02-01' AND '2025-02-28' 
+         GROUP BY booking_date made by do_action('wp_ajax_get_unavailable_dates'), WP_Hook->do_action, WP_Hook->apply_filters, booking_plugin_get_unavailable_dates
+[11-Feb-2025 19:50:17 UTC] WordPress database error Table 'local.wp_booking' doesn't exist for query SELECT booking_date, COUNT(DISTINCT booking_time) as booked_slots 
+         FROM wp_booking 
+         WHERE booking_date BETWEEN '2025-02-01' AND '2025-02-28' 
+         GROUP BY booking_date made by do_action('wp_ajax_get_unavailable_dates'), WP_Hook->do_action, WP_Hook->apply_filters, booking_plugin_get_unavailable_dates
+[11-Feb-2025 19:50:24 UTC] WordPress database error Table 'local.wp_booking' doesn't exist for query SELECT booking_date, COUNT(DISTINCT booking_time) as booked_slots 
+         FROM wp_booking 
+         WHERE booking_date BETWEEN '2025-02-01' AND '2025-02-28' 
+         GROUP BY booking_date made by do_action('wp_ajax_get_unavailable_dates'), WP_Hook->do_action, WP_Hook->apply_filters, booking_plugin_get_unavailable_dates
+[11-Feb-2025 19:50:26 UTC] WordPress database error Table 'local.wp_booking' doesn't exist for query SELECT * FROM wp_booking ORDER BY booking_date DESC, booking_time ASC made by do_action('toplevel_page_booking-plugin'), WP_Hook->do_action, WP_Hook->apply_filters, booking_plugin_admin_page
+[11-Feb-2025 19:50:26 UTC] WordPress database error Table 'local.wp_booking' doesn't exist for query SELECT booking_date, COUNT(DISTINCT booking_time) as booked_slots 
+         FROM wp_booking 
+         WHERE booking_date BETWEEN '2025-02-01' AND '2025-02-28' 
+         GROUP BY booking_date made by do_action('wp_ajax_get_unavailable_dates'), WP_Hook->do_action, WP_Hook->apply_filters, booking_plugin_get_unavailable_dates
+[11-Feb-2025 19:50:30 UTC] WordPress database error Table 'local.wp_booking' doesn't exist for query SELECT booking_date, COUNT(DISTINCT booking_time) as booked_slots 
+         FROM wp_booking 
+         WHERE booking_date BETWEEN '2025-02-01' AND '2025-02-28' 
+         GROUP BY booking_date made by do_action('wp_ajax_get_unavailable_dates'), WP_Hook->do_action, WP_Hook->apply_filters, booking_plugin_get_unavailable_dates
+[11-Feb-2025 19:50:30 UTC] WordPress database error Table 'local.wp_booking' doesn't exist for query SELECT booking_date, COUNT(DISTINCT booking_time) as booked_slots 
+         FROM wp_booking 
+         WHERE booking_date BETWEEN '2025-02-01' AND '2025-02-28' 
+         GROUP BY booking_date made by do_action('wp_ajax_get_unavailable_dates'), WP_Hook->do_action, WP_Hook->apply_filters, booking_plugin_get_unavailable_dates
+[11-Feb-2025 19:50:41 UTC] WordPress database error Table 'local.wp_booking' doesn't exist for query SELECT booking_date, COUNT(DISTINCT booking_time) as booked_slots 
+         FROM wp_booking 
+         WHERE booking_date BETWEEN '2025-02-01' AND '2025-02-28' 
+         GROUP BY booking_date made by do_action('wp_ajax_get_unavailable_dates'), WP_Hook->do_action, WP_Hook->apply_filters, booking_plugin_get_unavailable_dates
+[11-Feb-2025 19:50:43 UTC] WordPress database error Table 'local.wp_booking' doesn't exist for query SELECT booking_date, COUNT(DISTINCT booking_time) as booked_slots 
+         FROM wp_booking 
+         WHERE booking_date BETWEEN '2025-02-01' AND '2025-02-28' 
+         GROUP BY booking_date made by do_action('wp_ajax_get_unavailable_dates'), WP_Hook->do_action, WP_Hook->apply_filters, booking_plugin_get_unavailable_dates
+[11-Feb-2025 19:50:54 UTC] WordPress database error Table 'local.wp_booking' doesn't exist for query SELECT booking_date, COUNT(DISTINCT booking_time) as booked_slots 
+         FROM wp_booking 
+         WHERE booking_date BETWEEN '2025-02-01' AND '2025-02-28' 
+         GROUP BY booking_date made by do_action('wp_ajax_get_unavailable_dates'), WP_Hook->do_action, WP_Hook->apply_filters, booking_plugin_get_unavailable_dates
+[11-Feb-2025 19:50:57 UTC] WordPress database error Table 'local.wp_booking' doesn't exist for query SELECT booking_date, COUNT(DISTINCT booking_time) as booked_slots 
+         FROM wp_booking 
+         WHERE booking_date BETWEEN '2025-02-01' AND '2025-02-28' 
+         GROUP BY booking_date made by do_action('wp_ajax_get_unavailable_dates'), WP_Hook->do_action, WP_Hook->apply_filters, booking_plugin_get_unavailable_dates
+[11-Feb-2025 19:51:00 UTC] WordPress database error Table 'local.wp_booking' doesn't exist for query SELECT booking_date, COUNT(DISTINCT booking_time) as booked_slots 
+         FROM wp_booking 
+         WHERE booking_date BETWEEN '2025-02-01' AND '2025-02-28' 
+         GROUP BY booking_date made by do_action('wp_ajax_get_unavailable_dates'), WP_Hook->do_action, WP_Hook->apply_filters, booking_plugin_get_unavailable_dates
+[11-Feb-2025 19:51:08 UTC] WordPress database error Table 'local.wp_booking' doesn't exist for query SELECT booking_date, COUNT(DISTINCT booking_time) as booked_slots 
+         FROM wp_booking 
+         WHERE booking_date BETWEEN '2025-02-01' AND '2025-02-28' 
+         GROUP BY booking_date made by do_action('wp_ajax_get_unavailable_dates'), WP_Hook->do_action, WP_Hook->apply_filters, booking_plugin_get_unavailable_dates
+[11-Feb-2025 19:51:15 UTC] WordPress database error Table 'local.wp_booking' doesn't exist for query SELECT booking_date, COUNT(DISTINCT booking_time) as booked_slots 
+         FROM wp_booking 
+         WHERE booking_date BETWEEN '2025-02-01' AND '2025-02-28' 
+         GROUP BY booking_date made by do_action('wp_ajax_get_unavailable_dates'), WP_Hook->do_action, WP_Hook->apply_filters, booking_plugin_get_unavailable_dates
+[11-Feb-2025 19:51:18 UTC] WordPress database error Table 'local.wp_booking' doesn't exist for query SELECT booking_date, COUNT(DISTINCT booking_time) as booked_slots 
+         FROM wp_booking 
+         WHERE booking_date BETWEEN '2025-02-01' AND '2025-02-28' 
+         GROUP BY booking_date made by do_action('wp_ajax_get_unavailable_dates'), WP_Hook->do_action, WP_Hook->apply_filters, booking_plugin_get_unavailable_dates
+[11-Feb-2025 19:51:24 UTC] WordPress database error Table 'local.wp_booking' doesn't exist for query SELECT booking_date, COUNT(DISTINCT booking_time) as booked_slots 
+         FROM wp_booking 
+         WHERE booking_date BETWEEN '2025-02-01' AND '2025-02-28' 
+         GROUP BY booking_date made by do_action('wp_ajax_get_unavailable_dates'), WP_Hook->do_action, WP_Hook->apply_filters, booking_plugin_get_unavailable_dates
+[11-Feb-2025 19:51:44 UTC] WordPress database error Table 'local.wp_booking' doesn't exist for query SELECT booking_date, COUNT(DISTINCT booking_time) as booked_slots 
+         FROM wp_booking 
+         WHERE booking_date BETWEEN '2025-02-01' AND '2025-02-28' 
+         GROUP BY booking_date made by do_action('wp_ajax_get_unavailable_dates'), WP_Hook->do_action, WP_Hook->apply_filters, booking_plugin_get_unavailable_dates
+[11-Feb-2025 19:51:48 UTC] WordPress database error Table 'local.wp_booking' doesn't exist for query SELECT booking_date, COUNT(DISTINCT booking_time) as booked_slots 
+         FROM wp_booking 
+         WHERE booking_date BETWEEN '2025-02-01' AND '2025-02-28' 
+         GROUP BY booking_date made by do_action('wp_ajax_get_unavailable_dates'), WP_Hook->do_action, WP_Hook->apply_filters, booking_plugin_get_unavailable_dates
+[11-Feb-2025 19:51:56 UTC] WordPress database error Table 'local.wp_booking' doesn't exist for query SELECT booking_date, COUNT(DISTINCT booking_time) as booked_slots 
+         FROM wp_booking 
+         WHERE booking_date BETWEEN '2025-02-01' AND '2025-02-28' 
+         GROUP BY booking_date made by do_action('wp_ajax_get_unavailable_dates'), WP_Hook->do_action, WP_Hook->apply_filters, booking_plugin_get_unavailable_dates
+[11-Feb-2025 19:51:59 UTC] WordPress database error Table 'local.wp_booking' doesn't exist for query SELECT booking_date, COUNT(DISTINCT booking_time) as booked_slots 
+         FROM wp_booking 
+         WHERE booking_date BETWEEN '2025-02-01' AND '2025-02-28' 
+         GROUP BY booking_date made by do_action('wp_ajax_get_unavailable_dates'), WP_Hook->do_action, WP_Hook->apply_filters, booking_plugin_get_unavailable_dates
+[11-Feb-2025 19:52:03 UTC] WordPress database error Table 'local.wp_booking' doesn't exist for query SELECT booking_date, COUNT(DISTINCT booking_time) as booked_slots 
+         FROM wp_booking 
+         WHERE booking_date BETWEEN '2025-02-01' AND '2025-02-28' 
+         GROUP BY booking_date made by do_action('wp_ajax_get_unavailable_dates'), WP_Hook->do_action, WP_Hook->apply_filters, booking_plugin_get_unavailable_dates
+[11-Feb-2025 19:52:05 UTC] WordPress database error Table 'local.wp_booking' doesn't exist for query SELECT booking_date, COUNT(DISTINCT booking_time) as booked_slots 
+         FROM wp_booking 
+         WHERE booking_date BETWEEN '2025-02-01' AND '2025-02-28' 
+         GROUP BY booking_date made by do_action('wp_ajax_get_unavailable_dates'), WP_Hook->do_action, WP_Hook->apply_filters, booking_plugin_get_unavailable_dates
+[11-Feb-2025 19:52:08 UTC] WordPress database error Table 'local.wp_booking' doesn't exist for query SELECT booking_date, COUNT(DISTINCT booking_time) as booked_slots 
+         FROM wp_booking 
+         WHERE booking_date BETWEEN '2025-02-01' AND '2025-02-28' 
+         GROUP BY booking_date made by do_action('wp_ajax_get_unavailable_dates'), WP_Hook->do_action, WP_Hook->apply_filters, booking_plugin_get_unavailable_dates
+[11-Feb-2025 19:52:09 UTC] WordPress database error Table 'local.wp_booking' doesn't exist for query SELECT booking_date, COUNT(DISTINCT booking_time) as booked_slots 
+         FROM wp_booking 
+         WHERE booking_date BETWEEN '2025-02-01' AND '2025-02-28' 
+         GROUP BY booking_date made by do_action('wp_ajax_get_unavailable_dates'), WP_Hook->do_action, WP_Hook->apply_filters, booking_plugin_get_unavailable_dates
+[11-Feb-2025 19:52:10 UTC] WordPress database error Table 'local.wp_booking' doesn't exist for query SELECT booking_date, COUNT(DISTINCT booking_time) as booked_slots 
+         FROM wp_booking 
+         WHERE booking_date BETWEEN '2025-02-01' AND '2025-02-28' 
+         GROUP BY booking_date made by do_action('wp_ajax_get_unavailable_dates'), WP_Hook->do_action, WP_Hook->apply_filters, booking_plugin_get_unavailable_dates
+[11-Feb-2025 19:52:38 UTC] WordPress database error Table 'local.wp_booking' doesn't exist for query SELECT booking_date, COUNT(DISTINCT booking_time) as booked_slots 
+         FROM wp_booking 
+         WHERE booking_date BETWEEN '2025-02-01' AND '2025-02-28' 
+         GROUP BY booking_date made by do_action('wp_ajax_get_unavailable_dates'), WP_Hook->do_action, WP_Hook->apply_filters, booking_plugin_get_unavailable_dates
+[11-Feb-2025 19:52:39 UTC] WordPress database error Table 'local.wp_booking' doesn't exist for query SELECT booking_date, COUNT(DISTINCT booking_time) as booked_slots 
+         FROM wp_booking 
+         WHERE booking_date BETWEEN '2025-02-01' AND '2025-02-28' 
+         GROUP BY booking_date made by do_action('wp_ajax_get_unavailable_dates'), WP_Hook->do_action, WP_Hook->apply_filters, booking_plugin_get_unavailable_dates
+[11-Feb-2025 19:52:43 UTC] WordPress database error Table 'local.wp_booking' doesn't exist for query SELECT booking_date, COUNT(DISTINCT booking_time) as booked_slots 
+         FROM wp_booking 
+         WHERE booking_date BETWEEN '2025-02-01' AND '2025-02-28' 
+         GROUP BY booking_date made by do_action('wp_ajax_get_unavailable_dates'), WP_Hook->do_action, WP_Hook->apply_filters, booking_plugin_get_unavailable_dates
+[11-Feb-2025 19:52:45 UTC] WordPress database error Table 'local.wp_booking' doesn't exist for query SELECT booking_date, COUNT(DISTINCT booking_time) as booked_slots 
+         FROM wp_booking 
+         WHERE booking_date BETWEEN '2025-02-01' AND '2025-02-28' 
+         GROUP BY booking_date made by do_action('wp_ajax_get_unavailable_dates'), WP_Hook->do_action, WP_Hook->apply_filters, booking_plugin_get_unavailable_dates
+[11-Feb-2025 19:52:48 UTC] WordPress database error Table 'local.wp_booking' doesn't exist for query SELECT booking_date, COUNT(DISTINCT booking_time) as booked_slots 
+         FROM wp_booking 
+         WHERE booking_date BETWEEN '2025-02-01' AND '2025-02-28' 
+         GROUP BY booking_date made by do_action('wp_ajax_get_unavailable_dates'), WP_Hook->do_action, WP_Hook->apply_filters, booking_plugin_get_unavailable_dates
+[11-Feb-2025 19:52:50 UTC] WordPress database error Table 'local.wp_booking' doesn't exist for query SELECT booking_date, COUNT(DISTINCT booking_time) as booked_slots 
+         FROM wp_booking 
+         WHERE booking_date BETWEEN '2025-02-01' AND '2025-02-28' 
+         GROUP BY booking_date made by do_action('wp_ajax_get_unavailable_dates'), WP_Hook->do_action, WP_Hook->apply_filters, booking_plugin_get_unavailable_dates
+[11-Feb-2025 19:59:11 UTC] WordPress database error Table 'local.wp_booking' doesn't exist for query SELECT booking_date, COUNT(DISTINCT booking_time) as booked_slots 
+         FROM wp_booking 
+         WHERE booking_date BETWEEN '2025-02-01' AND '2025-02-28' 
+         GROUP BY booking_date made by do_action('wp_ajax_get_unavailable_dates'), WP_Hook->do_action, WP_Hook->apply_filters, booking_plugin_get_unavailable_dates
+[11-Feb-2025 19:59:23 UTC] WordPress database error Table 'local.wp_booking' doesn't exist for query SELECT booking_date, COUNT(DISTINCT booking_time) as booked_slots 
+         FROM wp_booking 
+         WHERE booking_date BETWEEN '2025-02-01' AND '2025-02-28' 
+         GROUP BY booking_date made by do_action('wp_ajax_get_unavailable_dates'), WP_Hook->do_action, WP_Hook->apply_filters, booking_plugin_get_unavailable_dates
+[11-Feb-2025 19:59:28 UTC] WordPress database error Table 'local.wp_booking' doesn't exist for query SHOW COLUMNS FROM wp_booking made by require('wp-admin/plugins.php'), activate_plugin, do_action('activate_ks-booking/booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, booking_plugin_update_table
+[11-Feb-2025 19:59:28 UTC] WordPress database error Table 'local.wp_booking' doesn't exist for query ALTER TABLE wp_booking ADD COLUMN package INT(2) NOT NULL DEFAULT 1; made by require('wp-admin/plugins.php'), activate_plugin, do_action('activate_ks-booking/booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, booking_plugin_update_table
+[11-Feb-2025 19:59:28 UTC] WordPress database error Table 'local.wp_booking' doesn't exist for query ALTER TABLE wp_booking ADD COLUMN cameras INT(2) NOT NULL DEFAULT 0; made by require('wp-admin/plugins.php'), activate_plugin, do_action('activate_ks-booking/booking.php'), WP_Hook->do_action, WP_Hook->apply_filters, booking_plugin_update_table
+[11-Feb-2025 19:59:28 UTC] WordPress database error Table 'local.wp_booking' doesn't exist for query SELECT booking_date, COUNT(DISTINCT booking_time) as booked_slots 
+         FROM wp_booking 
+         WHERE booking_date BETWEEN '2025-02-01' AND '2025-02-28' 
+         GROUP BY booking_date made by do_action('wp_ajax_get_unavailable_dates'), WP_Hook->do_action, WP_Hook->apply_filters, booking_plugin_get_unavailable_dates
+[11-Feb-2025 19:59:29 UTC] WordPress database error Table 'local.wp_booking' doesn't exist for query SELECT booking_date, COUNT(DISTINCT booking_time) as booked_slots 
+         FROM wp_booking 
+         WHERE booking_date BETWEEN '2025-02-01' AND '2025-02-28' 
+         GROUP BY booking_date made by do_action('wp_ajax_get_unavailable_dates'), WP_Hook->do_action, WP_Hook->apply_filters, booking_plugin_get_unavailable_dates
+[11-Feb-2025 20:03:42 UTC] WordPress database error Table 'local.wp_booking' doesn't exist for query SELECT booking_date, COUNT(DISTINCT booking_time) as booked_slots 
+         FROM wp_booking 
+         WHERE booking_date BETWEEN '2025-02-01' AND '2025-02-28' 
+         GROUP BY booking_date made by do_action('wp_ajax_get_unavailable_dates'), WP_Hook->do_action, WP_Hook->apply_filters, booking_plugin_get_unavailable_dates
+[11-Feb-2025 20:06:45 UTC] WordPress database error Table 'local.wp_booking' doesn't exist for query SELECT booking_date, COUNT(DISTINCT booking_time) as booked_slots 
+         FROM wp_booking 
+         WHERE booking_date BETWEEN '2025-02-01' AND '2025-02-28' 
+         GROUP BY booking_date made by do_action('wp_ajax_get_unavailable_dates'), WP_Hook->do_action, WP_Hook->apply_filters, booking_plugin_get_unavailable_dates
+[11-Feb-2025 20:10:14 UTC] WordPress database error Table 'local.wp_booking' doesn't exist for query SELECT booking_date, COUNT(DISTINCT booking_time) as booked_slots 
+         FROM wp_booking 
+         WHERE booking_date BETWEEN '2025-02-01' AND '2025-02-28' 
+         GROUP BY booking_date made by do_action('wp_ajax_get_unavailable_dates'), WP_Hook->do_action, WP_Hook->apply_filters, booking_plugin_get_unavailable_dates
+[11-Feb-2025 20:10:16 UTC] WordPress database error Table 'local.wp_booking' doesn't exist for query SELECT booking_date, COUNT(DISTINCT booking_time) as booked_slots 
+         FROM wp_booking 
+         WHERE booking_date BETWEEN '2025-02-01' AND '2025-02-28' 
+         GROUP BY booking_date made by do_action('wp_ajax_get_unavailable_dates'), WP_Hook->do_action, WP_Hook->apply_filters, booking_plugin_get_unavailable_dates
+[11-Feb-2025 20:33:57 UTC] PHP Parse error:  syntax error, unexpected identifier "б", expecting "]" in C:\Users\piska\Local Sites\photostudio\app\public\wp-content\plugins\ks-booking\booking.php on line 180
+[11-Feb-2025 20:39:36 UTC] PHP Warning:  Undefined variable $result in C:\Users\piska\Local Sites\photostudio\app\public\wp-content\plugins\ks-booking\booking.php on line 232
+[12-Feb-2025 17:11:32 UTC] PHP Parse error:  syntax error, unexpected identifier "define" in C:\Users\piska\Local Sites\photostudio\app\public\wp-config.php on line 98
+[12-Feb-2025 17:11:33 UTC] PHP Parse error:  syntax error, unexpected identifier "define" in C:\Users\piska\Local Sites\photostudio\app\public\wp-config.php on line 98
+[12-Feb-2025 17:11:33 UTC] PHP Parse error:  syntax error, unexpected identifier "define" in C:\Users\piska\Local Sites\photostudio\app\public\wp-config.php on line 98

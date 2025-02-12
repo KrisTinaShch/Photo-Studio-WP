@@ -41,8 +41,57 @@ h3 {
     margin: 0.5em 0;
 }
 
+.accordion {
+    width: 100%;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
 
+.accordion-item {
+    border-bottom: 1px solid #101010;
 
+}
+
+.accordion-header {
+    padding: 15px;
+    background: #191c21;
+    color: #c3c3c3;
+    cursor: pointer;
+    transition: background 0.3s;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.accordion-header:hover {
+    background: #25282e;
+}
+
+.accordion-content {
+    background: #e7e7e7;
+    overflow: hidden;
+    color: #000;
+    font-weight: 300;
+    max-height: 0;
+    transition: max-height 0.4s ease-out, padding 0.4s ease-out;
+    padding: 0 15px;
+    line-height: 1.3em;
+}
+
+.accordion-content p {
+    margin: 10px 0;
+}
+
+.navigation-icon {
+    font-size: 20px;
+    font-weight: bold;
+    transition: transform 0.4s ease;
+}
+
+.accordion-item.active .navigation-icon {
+    transform: rotate(45deg);
+}
 
 .test-carousels {
     width: 100%;

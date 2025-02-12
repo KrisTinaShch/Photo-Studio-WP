@@ -15,6 +15,34 @@ burgerIcon.addEventListener('click', () => {
   navMenu.classList.toggle('open');
 });
 
+document.addEventListener("DOMContentLoaded", () => {
+  const items = document.querySelectorAll(".accordion-item");
+
+  items.forEach(item => {
+      const header = item.querySelector(".accordion-header");
+      const content = item.querySelector(".accordion-content");
+      const icon = header.querySelector(".navigation-icon");
+
+      header.addEventListener("click", function () {
+          const isOpen = item.classList.contains("active");
+
+          // Закрытие всех элементов перед открытием нового
+          items.forEach(el => {
+              el.classList.remove("active");
+              el.querySelector(".accordion-content").style.maxHeight = null;
+              el.querySelector(".accordion-content").style.padding = "0 15px";
+          });
+
+          if (!isOpen) {
+              item.classList.add("active");
+              content.style.maxHeight = content.scrollHeight + "px";
+              content.style.padding = "15px";
+          }
+      });
+  });
+});
+
+
 jQuery(document).ready(function ($) {
   $('.test-carousel').slick({
     slidesToShow: 1,
